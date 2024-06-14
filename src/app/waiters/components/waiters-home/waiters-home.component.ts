@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   standalone:true,
@@ -10,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class WaitersHomeComponent implements OnInit {
   products: { name: string, price: number }[] = []; // Array to hold products
 
-  constructor() { }
+  private router = inject(Router);
 
   ngOnInit() {
     // Fetch products when component initializes
@@ -34,6 +35,13 @@ export class WaitersHomeComponent implements OnInit {
       { name: 'Kiwi Smoothie', price: 120 },
       { name: 'Mixed Berry Smoothie', price: 125 }
         ];
+  }
+
+  addProduct(){
+    console.log("Product added successfully!");
+
+    this.router.navigate(['/captain/add']);
+
   }
 
 }

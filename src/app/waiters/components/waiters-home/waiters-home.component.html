@@ -20,10 +20,10 @@
         </div>
         <div class="h-full w-full col-span-2 flex gap-3 justify-center items-center">
         <p class="font-semibold text-gray-500">${{item.price}}</p>
-        <div class="bg-violet-200 h-8 w-8 rounded-full font-semibold flex justify-center items-center">
+        <div class="bg-blue-50 h-8 w-8 rounded-full font-semibold flex justify-center items-center">
           <img src="/assets/icons/pencil.png" alt="Edit" class="h-4 w-4">
         </div>
-        <div class="bg-violet-200 h-8 w-8 rounded-full flex justify-center items-center">
+        <div class="bg-red-50 h-8 w-8 rounded-full flex justify-center items-center">
           <img src="/assets/icons/delete.png" alt="Delete" class="h-4 w-4">
   
         </div>
@@ -33,7 +33,7 @@
   </div>
   
   <div class="fixed bottom-5 left-1/2 transform -translate-x-1/2 mb-8 w-60">
-    <button class="bg-lime-500 text-white px-16 py-3 rounded-lg font-semibold">Add New Item</button>
+    <button (click)="addProduct()" class="bg-lime-500 text-white px-16 py-3 rounded-lg font-semibold">Add New Item</button>
   </div>
   
 

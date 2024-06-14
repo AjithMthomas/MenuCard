@@ -1,0 +1,42 @@
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <div class="flex justify-between p-3 border border-b-gray-500">
+            <p>Product Details</p>
+            <span class="close">&times;</span>
+        </div>
+      <form id="productForm">
+        <div class="p-3 flex flex-col gap-5 ">
+            
+            <div class="flex justify-between px-5">
+    
+                <label for="productName">Product Name</label><br>
+                <input type="text" class="border border-black" id="productName" name="productName"><br>
+            </div>
+           
+            <div class="flex justify-between px-5">
+                <label for="productPrice">Product Price</label><br>
+                <input type="number" class="border border-black" id="productPrice" name="productPrice" step="0.01"><br>
+            </div>
+            <div class="flex justify-between  px-5">
+                <label for="productImage">Product Image</label>
+                <div class="border border-black w-44 flex ">
+                    <input type="file" id="productImage" name="productImage" class="hidden" accept="image/*">
+                    <button onclick="document.getElementById('productImage').click()" class="bg-gray-300 px-2 ml-auto">Choose a file</button>
+                </div>
+                
+            </div>
+            
+            <div class="flex gap-1 px-5">
+                <input type="checkbox" class="border border-black" id="productPrice" name="productPrice" step="0.01"><br>
+                <label for="productPrice">In stock</label><br>
+            </div>
+            
+            <div class="flex justify-center items-center"> 
+
+                <button class=" bg-lime-500  py-2 px-5">Add Product</button>
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  
