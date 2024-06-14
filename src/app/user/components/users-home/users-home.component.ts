@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersHomeComponent implements OnInit {
 
-  constructor() { }
+categories =["Snacks","popular","Breads","Drinks","Burgers","Pastries","Coffee"]
 
   ngOnInit() {
   }
