@@ -1,12 +1,14 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { ProductModalComponent } from '../product-modal/product-modal.component';
 
 @Component({
   standalone:true,
   selector: 'app-waiters-home',
   templateUrl: './waiters-home.component.html',
   styleUrls: ['./waiters-home.component.css'],
-  imports : []
+  imports : [MatSidenavModule,ProductModalComponent]
 })
 export class WaitersHomeComponent implements OnInit {
   products: { name: string, price: number }[] = []; // Array to hold products

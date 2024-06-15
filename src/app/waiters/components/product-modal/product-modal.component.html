@@ -1,33 +1,33 @@
 <div id="productModal" class="modal">
     <div class="modal-content">
-        <div class="flex justify-between p-3 border border-b-gray-500">
-            <p>Product Details</p>
-            <span class="close">&times;</span>
+        <div class="flex justify-between items-center p-2 border border-b-gray-500">
+            <p class="text-center !mb-0">Product Details</p>
+            <span class="close text-xl mr-2 cursor-pointer" (click)="close()">&times;</span>
         </div>
       <form id="productForm">
-        <div class="p-3 flex flex-col gap-5 ">
+        <div class="p-3 flex flex-col gap-5 w-80">
             
-            <div class="flex justify-between px-5">
+            <div class="flex justify-between ">
     
                 <label for="productName">Product Name</label><br>
-                <input type="text" class="border border-black" id="productName" name="productName"><br>
+                <input type="text" class="border border-black" id="productName" name="productName">
             </div>
            
-            <div class="flex justify-between px-5">
+            <div class="flex justify-between ">
                 <label for="productPrice">Product Price</label><br>
-                <input type="number" class="border border-black" id="productPrice" name="productPrice" step="0.01"><br>
+                <input type="number" class="border border-black" id="productPrice" name="productPrice" step="0.01">
             </div>
-            <div class="flex justify-between  px-5">
+            <div class="flex justify-between  ">
                 <label for="productImage">Product Image</label>
-                <div class="border border-black w-44 flex ">
+                <div class="border border-black w-[148px] flex ">
                     <input type="file" id="productImage" name="productImage" class="hidden" accept="image/*">
-                    <button onclick="document.getElementById('productImage').click()" class="bg-gray-300 px-2 ml-auto">Choose a file</button>
+                    <div (click)="chooseProductImage()" class="bg-gray-300 px-2 ml-auto">Choose</div>
                 </div>
                 
             </div>
             
-            <div class="flex gap-1 px-5">
-                <input type="checkbox" class="border border-black" id="productPrice" name="productPrice" step="0.01"><br>
+            <div class="flex gap-1 ">
+                <input type="checkbox" class="border border-black" id="productPrice" name="productPrice" step="0.01" checked><br>
                 <label for="productPrice">In stock</label><br>
             </div>
             
