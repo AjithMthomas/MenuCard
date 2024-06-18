@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 
 @Component({
   standalone:true,
-  selector: 'app-waiter-login',
-  templateUrl: './waiter-login.component.html',
-  styleUrls: ['./waiter-login.component.scss']
+  selector: 'app-captain-login',
+  templateUrl: './captain-login.component.html',
+  styleUrls: ['./captain-login.component.css']
 })
-export class WaiterLoginComponent implements OnInit {
+export class CaptainLoginComponent implements OnInit {
 
   constructor() { }
   private router = inject(Router)
