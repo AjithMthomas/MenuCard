@@ -8,24 +8,24 @@
   <!-- Products List -->
   <div class="mb-32 pt-12">
     @for(item of products; track item){
-    <div class=" grid grid-cols-5 gap-2 h-24 p-2 border border-b-gray-300">
+    <div class=" grid grid-cols-5 gap-2 h-28 p-2 border border-b-gray-300">
       <div class="h-full w-full col-span-3 grid grid-cols-3">
          
-          <div class="flex items-center justify-center">
-            <div class="bg-white w-16 h-16 rounded-full">
-              <img src="/assets/images/juice image.jpg" alt="Product Image" class="rounded-full max-h-[90px]">
+          <div class="flex items-center justify-center ps-2">
+            <div class="bg-white w-20 h-20 rounded-full">
+              <img src="/assets/images/juice image.jpg" alt="Product Image" class="rounded-full">
             </div>
           </div>
-          <div class="font-semibold col-span-2 text-gray-600 pl-2 flex items-center justify-start" >
-            <p class="!mb-0">{{item.name}}</p>
+          <div class="col-span-2 text-gray-600 pl-3 flex items-center justify-start" >
+            <p class="!mb-0 text-gray-500 text-lg font-medium">{{item.name}}</p>
           </div>
         </div>
         <div class="h-full w-full col-span-2 flex gap-3 justify-center items-center">
-        <p class="font-semibold text-gray-500 !mb-0">${{item.price}}</p>
-        <div class="bg-blue-50 h-8 w-8 rounded-full font-semibold flex justify-center items-center">
+        <p class="font-semibold text-gray-500 !mb-0 text-md">${{item.price}}</p>
+        <div class="bg-blue-50 h-10 w-10 rounded-full font-semibold flex justify-center items-center">
           <img src="/assets/icons/pencil.png" alt="Edit" class="h-4 w-4">
         </div>
-        <div class="bg-red-50 h-8 w-8 rounded-full flex justify-center items-center">
+        <div class="bg-red-50 h-10 w-10 rounded-full flex justify-center items-center">
           <img src="/assets/icons/delete.png" alt="Delete" class="h-4 w-4">
   
         </div>

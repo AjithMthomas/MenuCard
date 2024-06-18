@@ -6,6 +6,7 @@ import { WaitersHomeComponent } from './waiters/components/waiters-home/waiters-
 import { AdminLayoutComponent } from './admin/components/admin-layout/admin-layout.component';
 import { AdminHomeComponent } from './admin/components/admin-home/admin-home.component';
 import { ProductModalComponent } from './waiters/components/product-modal/product-modal.component';
+import { WaiterLoginComponent } from './auth/components/waiter-login/waiter-login.component'
 
 export const routes: Routes = [
 
@@ -28,6 +29,10 @@ export const routes: Routes = [
         path:'captain',
         component:WaitersLayoutComponent,
         children:[
+            {
+                path:'captain-login',
+                component:WaiterLoginComponent
+            },
             {
                 path:'index',
                 component:WaitersHomeComponent
