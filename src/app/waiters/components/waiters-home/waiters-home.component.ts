@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { ProductModalComponent } from '../product-modal/product-modal.component';
+import { WaiterServiceService } from '../../services/waiter-service.service';
 
 @Component({
   standalone:true,
@@ -14,13 +15,18 @@ export class WaitersHomeComponent implements OnInit {
   products: { name: string, price: number }[] = []; // Array to hold products
 
   private router = inject(Router);
-
+  private waiterService = inject(WaiterServiceService);
   ngOnInit() {
     // Fetch products when component initializes
     this.fetchProducts();
   }
 
   fetchProducts() {
+    this.waiterService.fetchProducts().subscribe((res)=>{
+      console.log(res);
+      
+    })
+
 
     this.products = [
       { name: 'Apple Juice', price: 100 },

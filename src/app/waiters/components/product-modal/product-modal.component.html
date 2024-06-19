@@ -1,42 +1,132 @@
 <div id="productModal" class="modal">
-    <div class="modal-content">
-        <div class="flex justify-between items-center p-2 border border-b-gray-500">
-            <p class="text-center !mb-0">Product Details</p>
-            <span class="close text-xl mr-2 cursor-pointer" (click)="close()">&times;</span>
-        </div>
-      <form id="productForm">
-        <div class="p-3 flex flex-col gap-5 w-80">
-            
-            <div class="flex justify-between ">
-    
-                <label for="productName">Product Name</label><br>
-                <input type="text" class="border border-black" id="productName" name="productName">
-            </div>
-           
-            <div class="flex justify-between ">
-                <label for="productPrice">Product Price</label><br>
-                <input type="number" class="border border-black" id="productPrice" name="productPrice" step="0.01">
-            </div>
-            <div class="flex justify-between  ">
-                <label for="productImage">Product Image</label>
-                <div class="border border-black w-[148px] flex ">
-                    <input type="file" id="productImage" name="productImage" class="hidden" accept="image/*">
-                    <div (click)="chooseProductImage()" class="bg-gray-300 px-2 ml-auto">Choose</div>
-                </div>
-                
-            </div>
-            
-            <div class="flex gap-1 ">
-                <input type="checkbox" class="border border-black" id="productPrice" name="productPrice" step="0.01" checked><br>
-                <label for="productPrice">In stock</label><br>
-            </div>
-            
-            <div class="flex justify-center items-center"> 
-
-                <button class=" bg-lime-500  py-2 px-5">Add Product</button>
-            </div>
-        </div>
-      </form>
+  <div class="modal-content">
+    <div class="flex justify-between items-center p-2 border border-b-gray-500">
+      <p class="text-center !mb-0 font-bold text-gray-700">Product Details</p>
+      <span class="close text-xl mr-2 cursor-pointer" (click)="close()"
+        >&times;</span
+      >
     </div>
+    <form id="productForm">
+      <div class="p-3 flex flex-col gap-5 w-80 text-gray-500">
+        <div class="flex justify-between">
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="username"
+          >
+            Product Name
+          </label>
+          <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="username"
+            type="text"
+            placeholder="Product Name"
+          />
+        </div>
+        <div class="flex justify-between">
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="username"
+          >
+            Product Price
+          </label>
+          <input
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="price"
+            type="number"
+            placeholder="Product Price"
+          />
+        </div>
+
+        <div class="inline-block relative w-64">
+          <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2">
+              Product Category
+            </label>
+            <div class="flex gap-2 justify-center items-center">
+              <select
+                class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+              >
+                <option>Select</option>
+                @for(item of categories; track item){
+
+                <option [value]="item.id">{{ item.name }}</option>
+                }
+              </select>
+              <div
+                class="w-10"
+                (click)="openCategoryForm()"
+              >
+                <img src="/assets/icons/plus.png" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        @if(showCategoryForm){
+        <div class="flex flex-col gap-2">
+          <p
+            class="text-gray-700 text-sm font-bold mb-2 border-b-2 border-gray-300 py-2"
+          >
+            Add New Category
+          </p>
+          <div class="flex justify-between">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="category name"
+            >
+              Category Name
+            </label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="username"
+              type="text"
+              placeholder="Category Name"
+              [(ngModel)]="categoryName"
+              [ngModelOptions]="{standalone: true}"
+            />
+          </div>
+          <div class="flex justify-center items-center gap-4 p-3">
+            <button
+              class="p-2 bg-lime-500 text-white"
+              (click)="submitCategory()"
+            >
+              Submit
+            </button>
+            <button class="p-2" (click)="openCategoryForm()">Cancel</button>
+          </div>
+        </div>
+        }
+
+        <div class="mb-3">
+          <label
+            for="formFile"
+            class="mb-2 inline-block text-gray-700 text-sm font-bold"
+            >Product Image</label
+          >
+          <input
+            class="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-secondary-500 bg-transparent bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-surface transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:me-3 file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-e file:border-solid file:border-inherit file:bg-transparent file:px-3 file:py-[0.32rem] file:text-surface focus:border-primary focus:text-gray-700 focus:shadow-inset focus:outline-none dark:border-white/70 dark:text-white file:dark:text-white"
+            type="file"
+            id="formFile"
+          />
+        </div>
+
+        <div class="flex gap-1">
+          <input
+            type="checkbox"
+            class="border border-black"
+            id="productPrice"
+            name="productPrice"
+            step="0.01"
+            checked
+          /><br />
+          <label for="productPrice" class="font-bold text-sm">In stock</label
+          ><br />
+        </div>
+
+        <div class="flex justify-center items-center">
+          <button class="bg-lime-500 !text-white py-2 px-5">Add Product</button>
+        </div>
+      </div>
+    </form>
   </div>
-  
+</div>
