@@ -11,7 +11,6 @@ export class AuthRepositoy {
      http = inject(HttpClient);
 
     captainLogin(body:ILoginBody): Observable<ITokenResponse> {
-      // Create FormData instance and append body properties
       const formData = new FormData();
       Object.entries(body).forEach(([key, value]) => {
       formData.append(key, value);
