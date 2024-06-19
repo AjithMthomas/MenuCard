@@ -5,7 +5,7 @@ import { WaitersLayoutComponent } from './components/waiters-layout/waiters-layo
 
 
 const routes: Routes = [
-{ path: 'login', canActivate:[CaptainAuthGuard],data:{role:'checkIsLoggedIn'}, component: CaptainLoginComponent },
+{ path: 'captain-login', canActivate:[CaptainAuthGuard],data:{role:'checkIsLoggedIn'}, component: CaptainLoginComponent },
 {
 path: '',
 canActivate: [CaptainAuthGuard],

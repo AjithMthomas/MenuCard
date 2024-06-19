@@ -15,7 +15,7 @@ import {
   
     let clonedRequest: HttpRequest<unknown>;
   
-    const excludedUrls = ['/captain/captain-login', '/master/login'];
+    const excludedUrls = ['captain/captain-login', '/master/login'];
   
     const headerWithCaptainToken = {
       Accept: 'application/json',
