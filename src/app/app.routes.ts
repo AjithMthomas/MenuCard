@@ -2,17 +2,15 @@ import { Routes } from '@angular/router';
 import { UserLayoutComponent } from './user/components/user-layout/user-layout.component';
 import { UsersHomeComponent } from './user/components/users-home/users-home.component';
 import { WaitersLayoutComponent } from './waiters/components/waiters-layout/waiters-layout.component';
-import { WaitersHomeComponent } from './waiters/components/waiters-home/waiters-home.component';
 import { AdminLayoutComponent } from './admin/components/admin-layout/admin-layout.component';
 import { AdminHomeComponent } from './admin/components/admin-home/admin-home.component';
-import { ProductModalComponent } from './waiters/components/product-modal/product-modal.component';
-import { WaiterLoginComponent } from './auth/components/waiter-login/waiter-login.component'
+
 
 export const routes: Routes = [
 
     {
         path:"",
-        redirectTo:'/users',
+        redirectTo:'/users/index',
         pathMatch:'full'
     },
     {
@@ -30,17 +28,10 @@ export const routes: Routes = [
         component:WaitersLayoutComponent,
         children:[
             {
-                path:'captain-login',
-                component:WaiterLoginComponent
-            },
-            {
-                path:'index',
-                component:WaitersHomeComponent
-            },
-            {
-                path:'add',
-                component:ProductModalComponent
-            }
+                path: '',
+                loadChildren: () =>
+                import('./waiters/captainAuthModule').then((m) => m.CatptainModule),
+                }
         ]
     },
     {
