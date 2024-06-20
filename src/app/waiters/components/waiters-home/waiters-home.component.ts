@@ -1,6 +1,6 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, ViewChild, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDrawer, MatSidenavModule} from '@angular/material/sidenav';
 import { ProductModalComponent } from '../product-modal/product-modal.component';
 import { WaiterServiceService } from '../../services/waiter-service.service';
 
@@ -12,7 +12,13 @@ import { WaiterServiceService } from '../../services/waiter-service.service';
   imports : [MatSidenavModule,ProductModalComponent]
 })
 export class WaitersHomeComponent implements OnInit {
-  products: { name: string, price: number }[] = []; // Array to hold products
+  products=signal<{name: string, price: number, image:string,id: number }[]>([]); // Array to hold products
+
+  selectedProductId : number | undefined;
+  addNewProduct : boolean = false;
+  @ViewChild('editdrawer') editdrawer!: MatDrawer;
+  @ViewChild('drawer') drawer!: MatDrawer;
+
 
   private router = inject(Router);
   private waiterService = inject(WaiterServiceService);
@@ -24,32 +30,49 @@ export class WaitersHomeComponent implements OnInit {
   fetchProducts() {
     this.waiterService.fetchProducts().subscribe((res)=>{
       console.log(res);
+      this.products.set(res.data)
+      console.log(this.products(),'products');
+      console.log(res.data,'datass');
       
     })
 
-
-    this.products = [
-      { name: 'Apple Juice', price: 100 },
-      { name: 'Orange Juice', price: 90 },
-      { name: 'Banana Smoothie', price: 120 },
-      { name: 'Grape Juice', price: 110 },
-      { name: 'Pineapple Juice', price: 95 },
-      { name: 'Strawberry Smoothie', price: 130 },
-      { name: 'Mango Lassi', price: 80 },
-      { name: 'Watermelon Juice', price: 85 },
-      { name: 'Peach Smoothie', price: 115 },
-      { name: 'Blueberry Juice', price: 105 },
-      { name: 'Lemonade', price: 75 },
-      { name: 'Kiwi Smoothie', price: 120 },
-      { name: 'Mixed Berry Smoothie', price: 125 }
-        ];
   }
 
-  addProduct(){
-    console.log("Product added successfully!");
+  add(type?:string){
+    if(type !== 'close'){
+      this.addNewProduct = true
+      setTimeout(()=>{
+        this.drawer.toggle();
+      },100)
+    }else{
+      this.addNewProduct = !this.addNewProduct
+      this.drawer.toggle();
+      this.fetchProducts();
 
-    this.router.navigate(['/captain/add']);
+    }
 
   }
+
+  edit(id?:number) {
+    if(id){
+      this.selectedProductId = id
+      setTimeout(()=>{
+        this.editdrawer.toggle();
+      },100)
+    }else{
+      this.editdrawer.toggle();
+      this.selectedProductId = undefined
+      this.fetchProducts();
+
+    }
+  }
+
+  deleteProduct(productId:number){
+    this.waiterService.deleteProduct(productId).subscribe((res) => {
+      console.log(res);
+      
+    })
+  }
+
 
 }
