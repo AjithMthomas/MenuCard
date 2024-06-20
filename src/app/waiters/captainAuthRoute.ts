@@ -1,7 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
 import { CaptainAuthGuard } from '../core/captainAuthGuard';
 import { CaptainLoginComponent } from '../auth/components/captain-login/captain-login.component';
-import { WaitersLayoutComponent } from './components/waiters-layout/waiters-layout.component';
+import { WaitersLayoutComponent } from './components/captain-layout/waiters-layout.component';
+
 
 
 const routes: Routes = [

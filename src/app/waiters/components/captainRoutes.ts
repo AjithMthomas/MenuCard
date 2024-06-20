@@ -1,5 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
-import { WaitersHomeComponent } from './waiters-home/waiters-home.component';
+import { WaitersHomeComponent } from './captain-products/waiters-home.component';
 import { ProductModalComponent } from './product-modal/product-modal.component';
 import { WaiterCategoryComponent } from './waiter-category/waiter-category.component';
 
