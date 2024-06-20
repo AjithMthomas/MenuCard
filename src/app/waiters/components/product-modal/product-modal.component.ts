@@ -89,6 +89,7 @@ export class ProductModalComponent implements OnInit, OnDestroy {
       this.waiterService.addCategory(this.categoryName).subscribe(
         (response) => {
           console.log('Category added successfully:', response);
+          this.showCategoryForm = !this.showCategoryForm;
           this.categoryName = '';
         },
         (error) => {

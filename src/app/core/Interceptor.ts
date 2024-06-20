@@ -28,8 +28,7 @@ import {
     }
     
     clonedRequest = req.clone({
-      setHeaders: req.url.includes('master') ? headerWithMasterToken : headerWithCaptainToken,
-      url: updateUrlRequest(req)
+      setHeaders: req.url.includes('master') ? headerWithMasterToken : headerWithCaptainToken
     });
   
     function updateUrlRequest(req: HttpRequest<unknown>): string {

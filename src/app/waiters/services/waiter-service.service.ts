@@ -20,7 +20,15 @@ export class WaiterServiceService {
     return this.waiterRepository.fetchProductWithId(id)
   }
 
+  fetchCategoryWithId(id:number): Observable<any> {
+    return this.waiterRepository.fetchCategoryWithId(id)
+  }
+
   updateProduct(id:number,formData:FormData): Observable<any> {
+    return this.waiterRepository.updateProduct(id,formData) 
+  }
+
+  updateCategory(id:number,formData:FormData): Observable<any> {
     return this.waiterRepository.updateProduct(id,formData) 
   }
 
@@ -35,6 +43,10 @@ export class WaiterServiceService {
   addCategory(categoryName:string): Observable<any>{
     const formData = new FormData();
     formData.append('name', categoryName);
+    return this.waiterRepository.addCategory(formData)
+  }
+
+  addCategoryFromModal(formData:FormData): Observable<any>{
     return this.waiterRepository.addCategory(formData)
   }
 

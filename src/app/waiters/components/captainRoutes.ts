@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { WaitersHomeComponent } from './waiters-home/waiters-home.component';
 import { ProductModalComponent } from './product-modal/product-modal.component';
+import { WaiterCategoryComponent } from './waiter-category/waiter-category.component';
 
 
 export const routes: Routes = [
@@ -17,6 +18,10 @@ pathMatch: 'full',
  {
      path:'add',
      component:ProductModalComponent
+ },
+ {
+     path:'category',
+     component:WaiterCategoryComponent
  }
 ];
 

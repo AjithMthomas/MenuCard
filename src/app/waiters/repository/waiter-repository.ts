@@ -25,9 +25,19 @@ export class WaiterRepository {
 
     return this.http.get<any>(`${this.baseUrl}/user/product/${id}`);
   }
+  fetchCategoryWithId(id:number): Observable<any> {
+
+    return this.http.get<any>(`${this.baseUrl}/user/category/${id}`);
+  }
 
   updateProduct(id:number,formData:FormData): Observable<any> {
     return this.http.patch<any>(`${this.baseUrl}/user/product/${id}`, 
+    formData
+    );  
+  }
+
+  updateCategory(id:number,formData:FormData): Observable<any> {
+    return this.http.patch<any>(`${this.baseUrl}/user/category/${id}`, 
     formData
     );  
   }

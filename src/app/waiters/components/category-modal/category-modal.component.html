@@ -1,0 +1,77 @@
+<div id="productModal" class="modal">
+    <div class="modal-content">
+      <div class="flex justify-between items-center p-2 border border-b-gray-500">
+        <p class="text-center !mb-0 font-bold text-gray-700">Category Details</p>
+        <span class="close text-xl mr-2 cursor-pointer" (click)="close()"
+          >&times;</span
+        >
+      </div>
+      <form [formGroup]="categoryForm" (ngSubmit)="submitCategory()">
+        <div class="p-3 flex flex-col gap-5 w-80 text-gray-500">
+          <div>
+            <div class="flex justify-between">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+                for="username"
+              >
+              Category Name
+              </label>
+              <input
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="username"
+                formControlName="categoryName"
+                type="text"
+                placeholder="Category Name"
+              />
+            </div>
+            @if(categoryForm.get('categoryName')?.invalid &&
+            categoryForm.get('categoryName')?.touched){
+            <div class="text-red-500 text-sm">Category name is required</div>
+            }
+          </div>
+         
+  
+          <div class="flex justify-between">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="username"
+            >
+            Category Description
+            </label>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="username"
+              formControlName="categoryDescription"
+              type="text"
+              placeholder="Category Description"
+            />
+          </div>
+        
+  
+  
+          <div class="mb-3">
+            <label
+              for="formFile"
+              class="mb-2 inline-block text-gray-700 text-sm font-bold"
+              >Category Image</label
+            >
+            <input
+              class="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-secondary-500 bg-transparent bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-surface transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:me-3 file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-e file:border-solid file:border-inherit file:bg-transparent file:px-3 file:py-[0.32rem] file:text-surface focus:border-primary focus:text-gray-700 focus:shadow-inset focus:outline-none dark:border-white/70 dark:text-white file:dark:text-white"
+              type="file"
+              id="formFile"
+              (change)="onFileSelected($event)"
+            />
+          </div>
+  
+          
+  
+          <div class="flex justify-center items-center">
+            <button class="bg-lime-500 !text-white py-2 px-5" type="submit">
+              {{ type === "add" ? "Add Category" : "Update Category" }}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  
