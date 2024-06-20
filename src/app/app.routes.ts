@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { UserLayoutComponent } from './user/components/user-layout/user-layout.component';
 import { UsersHomeComponent } from './user/components/users-home/users-home.component';
-import { WaitersLayoutComponent } from './waiters/components/waiters-layout/waiters-layout.component';
+import { WaitersLayoutComponent } from './waiters/components/captain-layout/waiters-layout.component';
 import { AdminLayoutComponent } from './admin/components/admin-layout/admin-layout.component';
 import { AdminHomeComponent } from './admin/components/admin-home/admin-home.component';
 

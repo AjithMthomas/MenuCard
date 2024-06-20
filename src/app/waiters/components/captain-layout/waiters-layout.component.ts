@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WaitersHomeComponent } from '../waiters-home/waiters-home.component';
+import { WaitersHomeComponent } from '../captain-products/waiters-home.component';
 import { RouterModule } from '@angular/router';
 
 @Component({
