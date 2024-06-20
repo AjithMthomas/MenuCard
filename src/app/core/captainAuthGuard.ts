@@ -28,7 +28,7 @@ export const CaptainAuthGuard: CanActivateFn = (
 
   // To prevent accessing the module if not loggedIn
   if (!appToken) {
-    router.navigate(['/captain/login']);
+    router.navigate(['/captain/captain-login']);
     return false;
   }
   return true;
