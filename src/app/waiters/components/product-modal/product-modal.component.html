@@ -1,60 +1,64 @@
-<div id="productModal" class="modal">
-  <div class="modal-content">
+<div id="productModal" class="modal bg-gray-50">
+  <div class="modal-content ">
     <div class="flex justify-between items-center p-2 border border-b-gray-500">
-      <p class="text-center !mb-0 font-bold text-gray-700">Product Details</p>
-      <span class="close text-xl mr-2 cursor-pointer" (click)="close()"
+      <p class="text-center !mb-0 font-bold text-gray-500 text-lg ps-3">Product Details</p>
+      <span class="close text-3xl text-gray-400 mr-2 cursor-pointer" (click)="close()"
         >&times;</span
       >
     </div>
     <form [formGroup]="productForm" (ngSubmit)="submitProduct()">
-      <div class="p-3 flex flex-col gap-5 w-80 text-gray-500">
+      <div class="p-5 flex flex-col gap-5 w-80 text-gray-500 border-b border-gray-300">
         <div>
           <div class="flex justify-between">
             <label
-              class="block text-gray-700 text-sm font-bold mb-2"
+              class="block text-gray-500 text-sm font-bold"
               for="username"
             >
               Product Name
             </label>
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            <div class="flex flex-col">
+              <input
+              class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
               id="username"
               formControlName="productName"
               type="text"
               placeholder="Product Name"
-            />
+              />
+              @if(productForm.get('productName')?.invalid &&
+              productForm.get('productName')?.touched){
+                <div class="text-red-500 font-medium pt-1 text-sm">Product name is required</div>
+              }
+            </div>
           </div>
-          @if(productForm.get('productName')?.invalid &&
-          productForm.get('productName')?.touched){
-          <div class="text-red-500 text-sm">product name is required</div>
-          }
         </div>
         <div>
           <div class="flex justify-between">
             <label
-              class="block text-gray-700 text-sm font-bold mb-2"
+              class="block text-gray-500 text-sm font-bold "
               for="username"
             >
               Product Price
             </label>
-            <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            <div class="flex flex-col">
+              <input
+              class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
               id="price"
               formControlName="productPrice"
               type="number"
               placeholder="Product Price"
-            />
+              />
+              @if(productForm.get('productPrice')?.invalid &&
+              productForm.get('productPrice')?.touched){
+                <div class="text-red-500 font-medium pt-1 text-sm">Product price is required</div>
+              }
+            </div>
           </div>
-          @if(productForm.get('productPrice')?.invalid &&
-          productForm.get('productPrice')?.touched){
-          <div class="text-red-500 text-sm">product price is required</div>
-          }
         </div>
 
         <div class="inline-block relative w-64">
           <div>
             <div>
-              <label class="block text-gray-700 text-sm font-bold mb-2">
+              <label class="block text-gray-500 text-sm font-bold mb-2">
                 Product Category
               </label>
               <div class="flex gap-2 justify-center items-center">
@@ -68,49 +72,53 @@
                   <option [value]="item.id">{{ item.name }}</option>
                   }
                 </select>
-                <div class="w-10" (click)="openCategoryForm()">
+                <div class="w-16 ps-2" (click)="openCategoryForm()">
                   <img src="/assets/icons/plus.png" alt="" />
                 </div>
               </div>
             </div>
             @if(productForm.get('productCategory')?.invalid &&
             productForm.get('productCategory')?.touched){
-            <div class="text-red-500 text-sm">product category is required</div>
+            <div class="text-red-500 pt-1 font-medium text-sm">Product category is required</div>
             }
           </div>
         </div>
 
         @if(showCategoryForm){
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-2 border border-gray-300 bg-gray-100 p-3 rounded-md">
           <p
-            class="text-gray-700 text-sm font-bold mb-2 border-b-2 border-gray-300 py-2"
+            class="text-gray-500 w-full text-base font-bold mb-2 border-b-2 border-gray-300 py-2"
           >
             Add New Category
           </p>
           <div class="flex justify-between">
             <label
-              class="block text-gray-700 text-sm font-bold mb-2"
+              class="block text-gray-500 text-sm font-bold mb-2"
               for="category name"
             >
               Category Name
             </label>
             <input
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
               id="username"
               type="text"
               placeholder="Category Name"
               [(ngModel)]="categoryName"
               [ngModelOptions]="{ standalone: true }"
             />
+            @if(productForm.get('productCategory')?.invalid &&
+            productForm.get('productCategory')?.touched){
+            <div class="text-red-500 pt-1 font-medium text-sm">Product category is required</div>
+            }
           </div>
-          <div class="flex justify-center items-center gap-4 p-3">
+          <div class="flex justify-center items-center gap-4 p-3 ps-10">
             <button
-              class="p-2 bg-lime-500 text-white"
+              class="p-2 bg-lime-500 text-white rounded-md"
               (click)="submitCategory()"
             >
               Submit
             </button>
-            <button class="p-2" (click)="openCategoryForm()">Cancel</button>
+            <button class="p-2 border border-gray-400 rounded-md" (click)="openCategoryForm()">Cancel</button>
           </div>
         </div>
         }
@@ -118,11 +126,11 @@
         <div class="mb-3">
           <label
             for="formFile"
-            class="mb-2 inline-block text-gray-700 text-sm font-bold"
+            class=" mb-2 inline-block text-gray-500 text-sm font-bold"
             >Product Image</label
           >
           <input
-            class="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-secondary-500 bg-transparent bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-surface transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:me-3 file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-e file:border-solid file:border-inherit file:bg-transparent file:px-3 file:py-[0.32rem] file:text-surface focus:border-primary focus:text-gray-700 focus:shadow-inset focus:outline-none dark:border-white/70 dark:text-white file:dark:text-white"
+            class="block w-full text-sm text-gray-400 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-400"
             type="file"
             id="formFile"
             (change)="onFileSelected($event)"
@@ -132,7 +140,7 @@
         <div class="flex gap-1">
           <input
             type="checkbox"
-            class="border border-black"
+            class="border border-gray-300"
             id="productStock"
             formControlName="productStock"
             name="productStock"
@@ -144,7 +152,7 @@
         </div>
 
         <div class="flex justify-center items-center">
-          <button class="bg-lime-500 !text-white py-2 px-5" type="submit">
+          <button class="bg-lime-500 !text-white py-2 px-5 rounded-md" type="submit">
             {{ type === "add" ? "Add Product" : "Update Product" }}
           </button>
         </div>

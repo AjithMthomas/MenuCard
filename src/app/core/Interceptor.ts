@@ -31,17 +31,17 @@ import {
       setHeaders: req.url.includes('master') ? headerWithMasterToken : headerWithCaptainToken
     });
   
-    function updateUrlRequest(req: HttpRequest<unknown>): string {
-      if (req.method === "GET" && !req.url.includes('captain-login') && !req.url.includes('master')) {
-        const alreadyHasAParam = req.url.split("?").length > 1;
-        if (alreadyHasAParam) {
-          return `${req.url}&restaurant_id=${localStorage.getItem('restaurantId')}`
-        }  
-        return `${req.url}?restaurant_id=${localStorage.getItem('restaurantId')}`
-      } else {
-        return req.url;
-      }
-    }
+    // function updateUrlRequest(req: HttpRequest<unknown>): string {
+    //   if (req.method === "GET" && !req.url.includes('captain-login') && !req.url.includes('master')) {
+    //     const alreadyHasAParam = req.url.split("?").length > 1;
+    //     if (alreadyHasAParam) {
+    //       return `${req.url}&restaurant_id=${localStorage.getItem('restaurantId')}`
+    //     }  
+    //     return `${req.url}?restaurant_id=${localStorage.getItem('restaurantId')}`
+    //   } else {
+    //     return req.url;
+    //   }
+    // }
     
     function appendToBody(req: HttpRequest<unknown>) {
       if ((req.method === "POST" || req.method === "PUT" || req.method === "PATCH") && (!req.url.includes('captain-login') && !req.url.includes('master'))) {

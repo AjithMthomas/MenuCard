@@ -3,7 +3,7 @@
 <div class="h-screen">
   <!-- products Heading -->
   <div class="fixed bg-white w-full h-12 border border-y-gray-300">
-    <p class="p-2 pl-5 text-gray-500 font-bold text-lg">Products</p>
+    <p class="p-2 pl-5 text-gray-500 font-bold text-xl">Products</p>
   </div>
   <!-- Products List -->
   <div class="mb-32 pt-12">
@@ -15,7 +15,7 @@
             <div class="
             bg-white w-20 h-20 rounded-full flex justify-center items-center">
               @if(item.image){
-                <img [src]="item.image" alt="Product Image" height="100" width="100" class="rounded-full">
+                <img [src]="item.image" alt="Product Image" height="100" width="100" class="rounded-full h-full w-full">
               }@else{
                 <img src="/assets/images/juice image.jpg" alt="Product Image" class="rounded-full">
               }
@@ -40,11 +40,13 @@
   </div>
   
   <div class="fixed bottom-5 left-1/2 transform -translate-x-1/2 mb-8 w-60">
-    <button (click)="add()" class="bg-lime-500 text-white px-16 py-3 rounded-lg font-semibold">Add New Item</button>
+    <button (click)="add()" class="bg-lime-500 text-white px-16 py-5 rounded-lg font-semibold">Add New Item</button>
   </div>
   
   @if(addNewProduct){
-    <mat-drawer #drawer mode="over" ><app-product-modal (closeEvent)="add('close')"></app-product-modal></mat-drawer>
+    <div >
+      <mat-drawer #drawer mode="over" ><app-product-modal (closeEvent)="add('close')"></app-product-modal></mat-drawer>
+    </div>
   }
   
   @if(selectedProductId){

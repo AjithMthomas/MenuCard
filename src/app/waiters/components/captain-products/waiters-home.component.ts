@@ -8,7 +8,7 @@ import { WaiterServiceService } from '../../services/waiter-service.service';
   standalone:true,
   selector: 'app-waiters-home',
   templateUrl: './waiters-home.component.html',
-  styleUrls: ['./waiters-home.component.css'],
+  styleUrls: ['./waiters-home.component.scss'],
   imports : [MatSidenavModule,ProductModalComponent]
 })
 export class WaitersHomeComponent implements OnInit {
