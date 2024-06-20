@@ -8,7 +8,7 @@ const routes: Routes = [
 { path: 'captain-login', canActivate:[CaptainAuthGuard],data:{role:'checkIsLoggedIn'}, component: CaptainLoginComponent },
 {
 path: '',
-canActivate: [],
+canActivate: [CaptainAuthGuard],
 component: WaitersLayoutComponent,
 loadChildren: () =>
 import('../waiters/components/capatainModules').then((m) => m.CatptainModules),

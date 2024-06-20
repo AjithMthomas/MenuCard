@@ -12,7 +12,7 @@ import { WaiterServiceService } from '../../services/waiter-service.service';
   imports : [MatSidenavModule,ProductModalComponent]
 })
 export class WaitersHomeComponent implements OnInit {
-  products=signal<{name: string, price: number, image:string,id: number }[]>([]); // Array to hold products
+  products: { name: string, price: number, image: string, id: number }[] = [];
 
   selectedProductId : number | undefined;
   addNewProduct : boolean = false;
@@ -30,8 +30,8 @@ export class WaitersHomeComponent implements OnInit {
   fetchProducts() {
     this.waiterService.fetchProducts().subscribe((res)=>{
       console.log(res);
-      this.products.set(res.data)
-      console.log(this.products(),'products');
+      this.products = res.data
+      console.log(this.products,'products');
       console.log(res.data,'datass');
       
     })
@@ -70,6 +70,8 @@ export class WaitersHomeComponent implements OnInit {
   deleteProduct(productId:number){
     this.waiterService.deleteProduct(productId).subscribe((res) => {
       console.log(res);
+       // Remove the deleted product from the local products array
+       this.products = this.products.filter(product => product.id !== productId);
       
     })
   }

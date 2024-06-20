@@ -29,8 +29,7 @@ import {
     
     clonedRequest = req.clone({
       setHeaders: req.url.includes('master') ? headerWithMasterToken : headerWithCaptainToken,
-      url: updateUrlRequest(req),
-      body: appendToBody(req)
+      url: updateUrlRequest(req)
     });
   
     function updateUrlRequest(req: HttpRequest<unknown>): string {
@@ -46,9 +45,13 @@ import {
     }
     
     function appendToBody(req: HttpRequest<unknown>) {
-      if ((req.method === "POST" || req.method === "PUT" || req.method === "PATCH") && (!req.url.includes('captain-login') && !req.url.includes('masater'))) {
+      if ((req.method === "POST" || req.method === "PUT" || req.method === "PATCH") && (!req.url.includes('captain-login') && !req.url.includes('master'))) {
         const stringifiedObj = JSON.stringify(req.body);
-        return { ...JSON.parse(stringifiedObj), restaurant_id: localStorage.getItem('restaurantId') }
+        console.log(stringifiedObj,'herereeee');
+        const form = { ...JSON.parse(stringifiedObj), restaurant_id: localStorage.getItem('restaurantId') }        
+        console.log(form);
+        
+        return form
       } else {
         return req.body;
       }
