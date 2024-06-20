@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { ICategory } from '../../repository/waiter-model';
 import {MatDrawer, MatSidenavModule} from '@angular/material/sidenav';
 import { CategoryModalComponent } from '../category-modal/category-modal.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertBoxComponent } from '../../../shared/components/alert-box/alert-box/alert-box.component';
 
 @Component({
   selector: 'app-waiter-category',
@@ -23,6 +25,7 @@ export class WaiterCategoryComponent {
 
   private router = inject(Router);
   private waiterService = inject(WaiterServiceService);
+  private dialog = inject(MatDialog);
   
   ngOnInit() {
     this.fetchCategories();
@@ -70,12 +73,26 @@ export class WaiterCategoryComponent {
   }
 
   deleteProduct(categoryId:number){
-    this.waiterService.deleteProduct(categoryId).subscribe((res) => {
-      console.log(res);
-       // Remove the deleted product from the local category array
-       this.categories = this.categories.filter(category => category.id !== categoryId);
-      
-    })
+    const dialogRef = this.dialog.open(AlertBoxComponent, {
+      width: '250px',
+      data: {
+        title: 'Confirm Deletion',
+        message: 'Are you sure you want to delete this category?',
+        confirmText: 'Yes',
+        cancelText: 'No',
+        showCancel: true
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) { 
+      this.waiterService.deleteCategory(categoryId).subscribe((res) => {
+        console.log(res);
+        // Remove the deleted product from the local category array
+        this.categories = this.categories.filter(category => category.id !== categoryId);
+        
+      })
+      }
+    });
   }
 
 

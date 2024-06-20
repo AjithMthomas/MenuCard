@@ -29,11 +29,15 @@ export class WaiterServiceService {
   }
 
   updateCategory(id:number,formData:FormData): Observable<any> {
-    return this.waiterRepository.updateProduct(id,formData) 
+    return this.waiterRepository.updateCategory(id,formData) 
   }
 
   deleteProduct(id:number): Observable<any> {
     return this.waiterRepository.deleteProduct(id) 
+  }
+
+  deleteCategory(id:number): Observable<any> {
+    return this.waiterRepository.deleteCategory(id) 
   }
 
   fetchCategories(): Observable<any> {    

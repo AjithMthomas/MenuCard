@@ -1,0 +1,22 @@
+<!-- Dialog Header -->
+<div class=" px-4 py-2 rounded-t-md">
+    <h2 class="text-lg text-gray-800 font-semibold">{{ data.title }}</h2>
+  </div>
+  
+  <!-- Dialog Content -->
+  <div class="p-4">
+    <p class="text-gray-700">{{ data.message }}</p>
+  </div>
+  
+  <!-- Dialog Actions -->
+  <div class="flex justify-end px-4 py-2 bg-gray-100 rounded-b-md">
+    @if(data.showCancel){
+        <button mat-button  class="mr-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded" (click)="onNoClick()">
+          {{ data.cancelText }}
+        </button>
+    }
+    <button mat-button [mat-dialog-close]="true" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+      {{ data.confirmText }}
+    </button>
+  </div>
+  

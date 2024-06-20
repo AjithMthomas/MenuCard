@@ -47,9 +47,18 @@ export class WaiterRepository {
     );  
   }
 
+  deleteCategory(id:number): Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}/user/category/${id}`
+    );  
+  }
+
 
   fetchCategories(): Observable<any> {    
-    return this.http.get<any>(`${this.baseUrl}/user/category`);
+    const headers = new HttpHeaders()
+    .set('Cache-Control', 'no-cache')
+    .set('Pragma', 'no-cache');
+
+    return this.http.get<any>(`${this.baseUrl}/user/category`, { headers })
   }
 
   addCategory(formData:FormData): Observable<any>{

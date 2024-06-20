@@ -3,7 +3,7 @@
     <div class="h-screen">
       <!-- products Heading -->
       <div class="fixed bg-white w-full h-12 border border-y-gray-300">
-        <p class="p-2 pl-5 text-gray-500 font-bold text-lg">Products</p>
+        <p class="p-2 pl-5 text-gray-500 font-bold text-lg">Categories</p>
       </div>
       <!-- Products List -->
       <div class="mb-32 pt-12">
@@ -13,9 +13,9 @@
              
               <div class="flex items-center justify-center ps-2">
                 <div class="
-                bg-white w-20 h-20 rounded-full flex justify-center items-center">
+                bg-white max-w-20 max-h-20 rounded-full flex justify-center items-center">
                   @if(item.image){
-                    <img [src]="item.image" alt="Product Image" height="100" width="100" class="rounded-full">
+                    <img [src]="item.image" alt="Product Image"  class="rounded-full object-cover max-w-full max-h-full">
                   }@else{
                     <img src="/assets/images/juice image.jpg" alt="Product Image" class="rounded-full">
                   }

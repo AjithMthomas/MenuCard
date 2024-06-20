@@ -30,7 +30,7 @@ export class ProductModalComponent implements OnInit, OnDestroy {
     productPrice: ['', [Validators.required, Validators.min(0)]],
     productCategory: ['',Validators.required],
     productImage: [''],
-    productStock: [''],
+    productStock: [true],
 
   });
 
