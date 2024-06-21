@@ -63,7 +63,7 @@
               </label>
               <div class="flex gap-2 justify-center items-center">
                 <select
-                  class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                  class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                   formControlName="productCategory"
                 >
                 <option disabled selected>Select</option>
@@ -85,9 +85,9 @@
         </div>
 
         @if(showCategoryForm){
-        <div class="flex flex-col gap-2 border border-gray-300 bg-gray-100 p-3 rounded-md">
+        <div class="shadow-2xl flex flex-col gap-2 border border-gray-200 bg-gray-50 p-3 rounded-md">
           <p
-            class="text-gray-500 w-full text-base font-bold mb-2 border-b-2 border-gray-300 py-2"
+            class="text-gray-500 w-full text-base font-bold mb-2 border-b-2 border-gray-100 py-2"
           >
             Add New Category
           </p>
@@ -98,6 +98,7 @@
             >
               Category Name
             </label>
+            <div class="flex flex-col">
             <input
               class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
               id="username"
@@ -110,6 +111,7 @@
             productForm.get('productCategory')?.touched){
             <div class="text-red-500 pt-1 font-medium text-sm">Product category is required</div>
             }
+            </div>
           </div>
           <div class="flex justify-center items-center gap-4 p-3 ps-10">
             <button
@@ -130,7 +132,7 @@
             >Product Image</label
           >
           <input
-            class="block w-full text-sm text-gray-400 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-400"
+            class="block w-full text-sm text-gray-400 border border-gray-200 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-400"
             type="file"
             id="formFile"
             (change)="onFileSelected($event)"
@@ -152,7 +154,7 @@
         </div>
 
         <div class="flex justify-center items-center">
-          <button class="bg-lime-500 !text-white py-2 px-5 rounded-md" type="submit">
+          <button class="shadow-md bg-lime-500 !text-white py-2 px-5 rounded-md" type="submit">
             {{ type === "add" ? "Add Product" : "Update Product" }}
           </button>
         </div>
