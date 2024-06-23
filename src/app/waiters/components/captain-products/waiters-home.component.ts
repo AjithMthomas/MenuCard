@@ -76,5 +76,9 @@ export class WaitersHomeComponent implements OnInit {
     })
   }
 
+  navigateToHome(){
+    this.router.navigate(['/captain/index'])
+  }
+
 
 }

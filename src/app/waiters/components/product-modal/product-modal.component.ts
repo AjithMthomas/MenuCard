@@ -36,11 +36,7 @@ export class ProductModalComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(){
-    this.waiterService.fetchCategories().subscribe((res)=>{
-        this.categories = res.data
-        console.log(res.data);
-        
-    });
+    this.fetchCategories();
 
     if (this.type === 'edit') {
       if (this.productId) {
@@ -59,6 +55,14 @@ export class ProductModalComponent implements OnInit, OnDestroy {
       }
     }
     
+  }
+
+  fetchCategories(){
+    this.waiterService.fetchCategories().subscribe((res)=>{
+      this.categories = res.data
+      console.log(res.data);
+      
+  });
   }
 
   showCategoryForm = false;
@@ -91,6 +95,7 @@ export class ProductModalComponent implements OnInit, OnDestroy {
           console.log('Category added successfully:', response);
           this.showCategoryForm = !this.showCategoryForm;
           this.categoryName = '';
+          this.fetchCategories();
         },
         (error) => {
           console.error('Error adding category:', error);
@@ -100,7 +105,7 @@ export class ProductModalComponent implements OnInit, OnDestroy {
   }
 
   submitProduct(): void {
-    console.log('here');
+    // console.log('here');
     
     // console.log(this.productForm);
     

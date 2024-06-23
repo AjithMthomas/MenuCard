@@ -10,7 +10,9 @@ export class WaiterServiceService {
 
   private waiterRepository = inject(WaiterRepository)
 
-
+  fetchCaptainDetails(){
+    return this.waiterRepository.fetchCaptainDetails();
+  }
 
   fetchProducts(): Observable<any> {
     return this.waiterRepository.fetchProducts()

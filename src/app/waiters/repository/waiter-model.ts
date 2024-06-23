@@ -32,3 +32,14 @@ export interface ICategory {
     is_deleted?: boolean;
 }
 
+export interface CaptainDetail {
+    mail : string;
+    id : number;
+    image_url : string;
+    name : string;
+    qr_code : string;
+    username : string;
+    location : string;
+    total_category: number; 
+    total_product : number;
+}

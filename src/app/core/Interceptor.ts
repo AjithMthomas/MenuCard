@@ -15,6 +15,10 @@ import {
   
     let clonedRequest: HttpRequest<unknown>;
   
+    if (req.url.includes('s3.ap-south-1.amazonaws.com')) {
+      return next(req);
+    }
+    
     const excludedUrls = ['captain/captain-login', '/master/login'];
   
     const headerWithCaptainToken = {

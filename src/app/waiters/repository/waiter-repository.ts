@@ -12,8 +12,11 @@ export class WaiterRepository {
 
   private baseUrl = environment.baseUrl
 
-  fetchProducts(): Observable<any> {
+  fetchCaptainDetails(){
+    return this.http.get<any>(`${this.baseUrl}/user/me/`)
+  }
 
+  fetchProducts(): Observable<any> {
     const headers = new HttpHeaders()
     .set('Cache-Control', 'no-cache')
     .set('Pragma', 'no-cache');
@@ -25,6 +28,7 @@ export class WaiterRepository {
 
     return this.http.get<any>(`${this.baseUrl}/user/product/${id}`);
   }
+
   fetchCategoryWithId(id:number): Observable<any> {
 
     return this.http.get<any>(`${this.baseUrl}/user/category/${id}`);

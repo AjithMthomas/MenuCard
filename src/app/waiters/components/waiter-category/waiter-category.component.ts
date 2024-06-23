@@ -42,6 +42,9 @@ export class WaiterCategoryComponent {
 
   }
 
+  navigateToHome(){
+    this.router.navigate(['/captain/index'])
+  }
 
   add(type?:string){
     if(type !== 'close'){
