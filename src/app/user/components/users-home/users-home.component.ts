@@ -13,7 +13,7 @@ import { NgClass } from '@angular/common';
 })
 export class UsersHomeComponent implements OnInit {
 
-  uid: string = '';
+  restaurantId: string = '';
 
   userService = inject(UserService);
   route = inject(ActivatedRoute);
@@ -28,11 +28,11 @@ export class UsersHomeComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      const uid = params.get('uid');
-      this.fetchCategories('1b265dbd-92b9-45fb-b3b8-4c98c9ecd10a'); // Call fetchCategories after getting uid
-      this.fetchProducts('1b265dbd-92b9-45fb-b3b8-4c98c9ecd10a'); // Call fetchCategories after getting uid
-      if(uid){
-        this.uid = uid;
+      const restaurantId = params.get('restaurantId');
+      if(restaurantId){
+        this.restaurantId = restaurantId;
+        this.fetchCategories(restaurantId); 
+        this.fetchProducts(restaurantId); 
       }
     });  
   }

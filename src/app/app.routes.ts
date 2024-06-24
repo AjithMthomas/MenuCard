@@ -18,7 +18,7 @@ export const routes: Routes = [
         component:UserLayoutComponent,
         children:[
             {
-                path:'index',
+                path:'index/:restaurantId',
                 component:UsersHomeComponent
             },
         ]
