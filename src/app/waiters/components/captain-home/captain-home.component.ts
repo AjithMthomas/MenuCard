@@ -27,7 +27,6 @@ export class CaptainHomeComponent implements OnInit {
     this.waiterService.fetchCaptainDetails().subscribe((res)=>{
       if(res){
         this.captainDetails = res.data
-        this.getQRBlob();
       }
 
 
@@ -37,10 +36,9 @@ export class CaptainHomeComponent implements OnInit {
   getQRBlob(){
     if (this.captainDetails?.qr_code) {
       this.http.get(this.captainDetails?.qr_code, { responseType: 'blob' }).subscribe(
-        (response) => {
-          console.log('qr');
-          
+        (response) => {          
           this.imageUrl = window.URL.createObjectURL(response);
+          this.downloadQR()
         },
         (error) => {
           console.error('Error fetching QR image:', error);
@@ -50,9 +48,7 @@ export class CaptainHomeComponent implements OnInit {
   }
 
   downloadQR() {
-    if (this.imageUrl) {
-      console.log('new');
-      
+    if (this.imageUrl) {      
       const a = document.createElement('a');
       a.href = this.imageUrl;
       a.download = `${this.captainDetails?.name}_qr_code.png`; 

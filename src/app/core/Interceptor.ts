@@ -15,7 +15,7 @@ import {
   
     let clonedRequest: HttpRequest<unknown>;
   
-    if (req.url.includes('s3.ap-south-1.amazonaws.com')) {
+    if (req.url.includes('s3')) {
       return next(req);
     }
     
