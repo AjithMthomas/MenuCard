@@ -48,14 +48,23 @@ export class CaptainHomeComponent implements OnInit {
   }
 
   downloadQR() {
-    if (this.imageUrl) {      
+    if (this.captainDetails?.qr_code) {      
       const a = document.createElement('a');
-      a.href = this.imageUrl;
-      a.download = `${this.captainDetails?.name}_qr_code.png`; 
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(this.imageUrl);
+      a.href = this.captainDetails?.qr_code;
+      // a.download = `${this.captainDetails?.name}_qr_code.png`; 
+      // document.body.appendChild(a);
+      // a.click();
+      // document.body.removeChild(a);
+      // window.URL.revokeObjectURL(this.imageUrl);
+      a.setAttribute('download', `${this.captainDetails?.name}_qr_code.png`);
+
+      if(typeof a.download === 'undefined'){
+        window.open(this.captainDetails?.qr_code, '_blank')
+      }else{
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
     }
   }
 
