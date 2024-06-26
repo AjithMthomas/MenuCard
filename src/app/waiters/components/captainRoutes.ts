@@ -3,6 +3,7 @@ import { WaitersHomeComponent } from './captain-products/waiters-home.component'
 import { ProductModalComponent } from './product-modal/product-modal.component';
 import { WaiterCategoryComponent } from './waiter-category/waiter-category.component';
 import { CaptainHomeComponent } from './captain-home/captain-home.component';
+import { AddAdvertisementModalComponent } from './add-advertisement-modal/add-advertisement-modal.component';
 
 
 export const routes: Routes = [
@@ -27,6 +28,10 @@ pathMatch: 'full',
  {
      path:'category',
      component:WaiterCategoryComponent
+ },
+ {
+     path:'adv',
+     component:AddAdvertisementModalComponent
  }
 ];
 

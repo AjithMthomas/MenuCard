@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import {MatDrawer, MatSidenavModule} from '@angular/material/sidenav';
 import { ProductModalComponent } from '../product-modal/product-modal.component';
 import { WaiterServiceService } from '../../services/waiter-service.service';
+import { AlertBoxComponent } from '../../../shared/components/alert-box/alert-box/alert-box.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   standalone:true,
@@ -19,7 +21,7 @@ export class WaitersHomeComponent implements OnInit {
   @ViewChild('editdrawer') editdrawer!: MatDrawer;
   @ViewChild('drawer') drawer!: MatDrawer;
 
-
+  private dialog = inject(MatDialog);
   private router = inject(Router);
   private waiterService = inject(WaiterServiceService);
   ngOnInit() {
@@ -68,12 +70,26 @@ export class WaitersHomeComponent implements OnInit {
   }
 
   deleteProduct(productId:number){
-    this.waiterService.deleteProduct(productId).subscribe((res) => {
-      console.log(res);
-       // Remove the deleted product from the local products array
-       this.products = this.products.filter(product => product.id !== productId);
-      
-    })
+    const dialogRef = this.dialog.open(AlertBoxComponent, {
+      width: '250px',
+      data: {
+        title: 'Confirm Deletion',
+        message: 'Are you sure you want to delete this category?',
+        confirmText: 'Yes',
+        cancelText: 'No',
+        showCancel: true
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) { 
+        this.waiterService.deleteProduct(productId).subscribe((res) => {
+          console.log(res);
+           // Remove the deleted product from the local products array
+           this.products = this.products.filter(product => product.id !== productId);
+          
+        })
+      }})
   }
 
   navigateToHome(){

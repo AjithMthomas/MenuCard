@@ -68,6 +68,11 @@ export class CaptainHomeComponent implements OnInit {
     }
   }
 
+  logOut(){
+    localStorage.clear();
+    this.router.navigate(['/captain/captain-login'])
+  }
+
 
   navigateToProducts(){
     this.router.navigate(['/captain/products'])
