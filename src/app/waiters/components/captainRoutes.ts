@@ -11,7 +11,7 @@ export const routes: Routes = [
 path: '',
 redirectTo: '/captain/index',
 pathMatch: 'full',
-},
+},  
   
  {
      path:'index',

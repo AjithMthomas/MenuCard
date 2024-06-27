@@ -17,7 +17,7 @@ export class ErrorPageComponent {
     console.log('here');
     
     if (restaurantId) {
-      this.router.navigate(['user', restaurantId]);
+      this.router.navigate(['users/index',restaurantId]);
     } else {
       this.router.navigate(['/captain/captain-login']);
     }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   standalone:true,
@@ -12,6 +13,7 @@ export class AddAdvertisementModalComponent implements OnInit {
 
 
   ngOnInit() {
+    initFlowbite();
   }
 
   newAddButton(){

@@ -74,13 +74,14 @@ export class WaiterCategoryComponent {
 
   deleteProduct(categoryId:number){
     const dialogRef = this.dialog.open(AlertBoxComponent, {
-      width: '250px',
+      width: '350px',
       data: {
         title: 'Confirm Deletion',
         message: 'Are you sure you want to delete this category?',
         confirmText: 'Yes',
         cancelText: 'No',
-        showCancel: true
+        showCancel: true,
+        type:"critical"
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -93,6 +94,7 @@ export class WaiterCategoryComponent {
               title: 'Info',
               message: res.message,
               confirmText: 'Ok',
+              type:"info"
 
             }
           });

@@ -71,13 +71,14 @@ export class WaitersHomeComponent implements OnInit {
 
   deleteProduct(productId:number){
     const dialogRef = this.dialog.open(AlertBoxComponent, {
-      width: '250px',
+      width: '350px',
       data: {
         title: 'Confirm Deletion',
         message: 'Are you sure you want to delete this category?',
         confirmText: 'Yes',
         cancelText: 'No',
-        showCancel: true
+        type:'critical'
+
       }
     });
 

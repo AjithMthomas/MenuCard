@@ -10,9 +10,11 @@ style="background-image: url('/assets/images/loginPage.jpg');"
  <button class="w-72 bg-yellow-300 text-white text-lg font-bold p-2 rounded-md"
  (click)="navigateToHome()"
  >Sign in</button>
- <span class="flex flex-row">
-  <p class="text-white font-medium">Don't have a account?</p>
-  <button type="submit" class="text-blue-500 font-medium ps-3">Sign Up</button>
+ <span class="flex flex-row justify-center items-center">
+  <p class="text-white font-medium pt-3">Don't have a account?</p>
+  <button type="submit" class="text-blue-500 font-medium ps-3"
+  (click)="contactAdmin()"
+  >Contact Admin</button>
  </span>
 </div>
 </form>
