@@ -30,6 +30,7 @@ export class UsersHomeComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const restaurantId = params.get('restaurantId');
       if(restaurantId){
+        localStorage.setItem('restaurantId', restaurantId);
         this.restaurantId = restaurantId;
         this.fetchCategories(restaurantId); 
         this.fetchProducts(restaurantId); 

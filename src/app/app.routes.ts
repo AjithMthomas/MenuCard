@@ -4,6 +4,7 @@ import { UsersHomeComponent } from './user/components/users-home/users-home.comp
 import { WaitersLayoutComponent } from './waiters/components/captain-layout/waiters-layout.component';
 import { AdminLayoutComponent } from './admin/components/admin-layout/admin-layout.component';
 import { AdminHomeComponent } from './admin/components/admin-home/admin-home.component';
+import { ErrorPageComponent } from './shared/components/error-page/error-page.component';
 
 
 export const routes: Routes = [
@@ -43,6 +44,10 @@ export const routes: Routes = [
                 component:AdminHomeComponent
             }
         ]
+    },
+    {
+        path:'**',
+        component:ErrorPageComponent,
     }
 
 ];

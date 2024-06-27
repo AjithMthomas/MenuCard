@@ -22,6 +22,7 @@ export const CaptainAuthGuard: CanActivateFn = (
     if (!appToken) {
       return true;
     } else {
+      router.navigate(['/captain/index']);
       return false;
     }
   }
