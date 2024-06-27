@@ -60,7 +60,6 @@ export class ProductModalComponent implements OnInit, OnDestroy {
   fetchCategories(){
     this.waiterService.fetchCategories().subscribe((res)=>{
       this.categories = res.data
-      console.log(res.data);
       
   });
   }
@@ -92,10 +91,13 @@ export class ProductModalComponent implements OnInit, OnDestroy {
     if (this.categoryName.trim()) {
       this.waiterService.addCategory(this.categoryName).subscribe(
         (response) => {
-          console.log('Category added successfully:', response);
           this.showCategoryForm = !this.showCategoryForm;
           this.categoryName = '';
+          this.productForm.patchValue({
+            productCategory: response.data.id,
+          });
           this.fetchCategories();
+
         },
         (error) => {
           console.error('Error adding category:', error);

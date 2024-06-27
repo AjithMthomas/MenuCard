@@ -33,10 +33,7 @@ export class WaiterCategoryComponent {
 
   fetchCategories() {
     this.waiterService.fetchCategories().subscribe((res)=>{
-      console.log(res);
       this.categories = res.data
-      console.log(this.categories,'Categories');
-      console.log(res.data,'datass');
       
     })
 
@@ -89,9 +86,20 @@ export class WaiterCategoryComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) { 
       this.waiterService.deleteCategory(categoryId).subscribe((res) => {
-        console.log(res);
-        // Remove the deleted product from the local category array
-        this.categories = this.categories.filter(category => category.id !== categoryId);
+        if(res.status_code === 400){
+          const dialogRef = this.dialog.open(AlertBoxComponent, {
+            width: '250px',
+            data: {
+              title: 'Info',
+              message: res.message,
+              confirmText: 'Ok',
+
+            }
+          });
+        }else{
+          // Remove the deleted product from the local category array
+          this.categories = this.categories.filter(category => category.id !== categoryId);
+        }
         
       })
       }

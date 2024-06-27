@@ -68,7 +68,7 @@ export class CategoryModalComponent implements OnInit,OnDestroy{
     if (inputElement.files && inputElement.files.length > 0) {
       const file = inputElement.files[0];
       this.categoryForm.patchValue({
-        productImage: file
+        categoryImage: file
       });
     }
   }
@@ -76,11 +76,7 @@ export class CategoryModalComponent implements OnInit,OnDestroy{
 
 
 
-  submitCategory(): void {
-    console.log('here');
-    
-    // console.log(this.productForm);
-    
+  submitCategory(): void {    
     if (this.categoryForm.valid) {
       const formData = new FormData();
       formData.append('name', this.categoryForm.get('categoryName')?.value);
