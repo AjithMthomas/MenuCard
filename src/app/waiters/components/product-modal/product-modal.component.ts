@@ -72,10 +72,11 @@ export class ProductModalComponent implements OnInit {
               console.log(this.portionData);
               
               
-              // this.portionForm.patchValue({
-              //   fullPortion: productData.portions,
-              //   halfPortion: productData.price,
-              // });
+              this.portionForm.patchValue({
+                fullPortion: productData.product_portion.find((item: IPortionData) => item.name === 'Full')?.price || '', // Set fullPortion price
+                halfPortion: productData.product_portion.find((item: IPortionData)  => item.name === 'Half')?.price || '', // Set halfPortion price
+                quarterPortion: productData.product_portion.find((item: IPortionData)  => item.name === 'Quarter')?.price || '' // Set quarterPortion price if exists
+              });
   
             }
           }
@@ -92,10 +93,12 @@ export class ProductModalComponent implements OnInit {
   
   saveChanges(index: number) {
     const newPrice = this.portionData[index].priceEdit;
+    const name = this.portionData[index].name;
     const id = this.portionData[index].id;
     if(newPrice && id){
       const formData = {
-        "price" : newPrice
+        "price" : newPrice,
+        "name":name
       }
       this.waiterService.editPortion(id,formData).subscribe((res)=>{
         if(res){
@@ -106,6 +109,38 @@ export class ProductModalComponent implements OnInit {
         }
       })
      
+    }
+  }
+
+  deletPortion(index:number){
+    const id = this.portionData[index].id;
+    if(this.portionData[index].name === 'Full'){
+      const dialogRef = this.dialog.open(AlertBoxComponent, {
+        width: '350px',
+        data: {
+          title: 'Info',
+          message: 'Full  portion prices cannot be deleted.',
+          confirmText: 'Ok',
+          type:'info'
+  
+        }
+      });
+      return;
+    }
+    if(id){
+      this.waiterService.deletePortion(id).subscribe({
+        next: (res) =>{
+          if(res.status_code === 204){
+            this.portionData = []
+          }else{
+            this.portionData.splice(index, 1);
+          }
+
+        },
+        error: (error) => {
+          console.error('Error deleting portion', error);
+        }
+      })
     }
   }
   
@@ -124,6 +159,7 @@ export class ProductModalComponent implements OnInit {
   showCategoryForm = false;
   showPortionForm = false;
   portionData : IPortionData[]=[]
+  oldPortionData : IPortionData[]=[]
   isPortion = false;
 
   close() {
@@ -177,7 +213,7 @@ export class ProductModalComponent implements OnInit {
       const fullPortionPrice = this.portionForm.get('fullPortion')?.value;
       const halfPortionPrice = this.portionForm.get('halfPortion')?.value;
       const quarterPortionPrice = this.portionForm.get('quarterPortion')?.value;
-
+      this.oldPortionData = this.portionData;
       this.portionData = [];
 
       this.portionData.push({
@@ -218,18 +254,15 @@ export class ProductModalComponent implements OnInit {
   }
 }
 
-  submitProduct(): void {
-    // console.log('here');
-    
-    // console.log(this.productForm);
-    
+
+  submitProduct(): void {    
     if (this.productForm.valid) {
       const formData = new FormData();
       formData.append('name', this.productForm.get('productName')?.value);
       formData.append('category_id', this.productForm.get('productCategory')?.value);
       formData.append('image', this.productForm.get('productImage')?.value); 
       formData.append('stock_available', this.productForm.get('productStock')?.value);
-      if (this.isPortion && this.portionData.length > 0) {
+      if (this.portionData.length > 0) {
         const portionsArray = JSON.stringify(this.portionData);
         formData.append('portions', portionsArray);
         formData.append('portion', 'true');

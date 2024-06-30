@@ -25,12 +25,17 @@ export class WaiterRepository {
   }
 
   fetchProductWithId(id:number): Observable<any> {
-
-    return this.http.get<any>(`${this.baseUrl}/user/product/${id}`);
+    const headers = new HttpHeaders()
+    .set('Cache-Control', 'no-cache')
+    .set('Pragma', 'no-cache');
+    return this.http.get<any>(`${this.baseUrl}/user/product/${id}`,{headers});
   }
 
   editPortion(id:number,formData:any){
     return this.http.patch<any>(`${this.baseUrl}/user/productportion/${id}`,formData)
+  }
+  deletePortion(id:number){
+    return this.http.delete<any>(`${this.baseUrl}/user/productportion/${id}`)
   }
 
   fetchCategoryWithId(id:number): Observable<any> {

@@ -17,8 +17,13 @@ export class WaiterServiceService {
   fetchProducts(): Observable<any> {
     return this.waiterRepository.fetchProducts()
   }
+
   editPortion(id:number,formData:any): Observable<any> {
     return this.waiterRepository.editPortion(id,formData);
+  }
+  
+  deletePortion(id:number): Observable<any> {
+    return this.waiterRepository.deletePortion(id);
   }
   
   fetchProductWithId(id:number): Observable<any> {

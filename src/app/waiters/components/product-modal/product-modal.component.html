@@ -52,9 +52,11 @@
                 <div class="text-red-500 font-medium pt-1 text-sm">Product price is required</div>
               }
             </div>
-            <div class="w-16 ps-2" (click)="openPortionForm()">
-              <img src="/assets/icons/plus.png" alt="" />
-            </div>
+            <!-- @if(!portionData.length && type !== 'edit'){ -->
+              <div class="w-16 ps-2" (click)="openPortionForm()">
+                <img src="/assets/icons/plus.png" alt="" />
+              </div>
+            <!-- } -->
           </div>
         </div>
 
@@ -141,7 +143,7 @@
                   <p>{{item.price}}</p>
                   <div class="flex gap-2">
                     <p (click)="enableEditMode(i)">Edit</p>
-                    <p >Delete</p>
+                      <p (click)="deletPortion(i)" >Delete</p>
                   </div>
                 </div>
               }@else{
