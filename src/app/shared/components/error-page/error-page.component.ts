@@ -22,4 +22,8 @@ export class ErrorPageComponent {
       this.router.navigate(['/captain/captain-login']);
     }
   }
+
+  goCaptain(){
+    this.router.navigate(['/captain/captain-login']);
+  }
 }

@@ -1,86 +1,143 @@
-<!-- <mat-drawer-container class="example-container" hasBackdrop="false" > -->
-
-<div class="w-full bg-lime-100"
->
-<div class="h-full  overflow-hidden shadow-lg p-5 bg-gray-50 rounded-md gap-2">
-        <div class="flex bg-white justify-end items-center"
-        >
-         <img src="/assets/icons/logout.png" alt="" class="!h-14 !w-14 p-3" (click)="logOut()"
-         >
+<div class="w-full bg-gray-50">
+  <div class="h-full overflow-hidden bg-gray-50 rounded-md gap-2">
+    <div
+      class="border-b  rounded-b-full py-3"
+      style="background-image: url('/assets/images/captainBg.gif')"
+    >
+      <div class="flex justify-end items-center pe-3">
+        <img
+          src="/assets/icons/logout.png"
+          alt=""
+          class="!h-12 !w-12 p-3 bg-white rounded-full shadow-lg"
+          (click)="logOut()"
+        />
+      </div>
+      <div class="text-center flex flex-col items-center"
+      >
+        <div class="bg-gray-50 w-64 rounded-full p-2">
+          <div>
+            @if(captainDetails?.image_url){
+              <img
+                class="rounded-full h-36 w-36 mx-auto"
+                src="{{captainDetails?.image_url}}"
+                alt=""
+              />
+            }@else{
+              <img
+                class="rounded-full h-36 w-36"
+                src="/assets/images/hotelPofile.jpg"
+                alt=""
+              />
+            }
+          </div>
+          <div class="py-2">
+            <h3 class="!text-xl !font-bold text-gray-600 px-2">
+              {{ captainDetails?.name }}
+            </h3>
+            <div class="inline-flex text-gray-500">
+              <img
+                src="./assets/icons/location.png"
+                alt="location"
+                class="h-4 w-4 !text-gray-300 mr-1"
+              />
+              <p class="px-1 text-xs">{{ captainDetails?.location }}</p>
+            </div>
+          </div>
         </div>
-          <div class="border-b pb-6 rounded-md py-3"
-          style="background-image: url('/assets/images/captainBg.gif');"
+      </div>
+      <div class="flex gap-2 px-2 pt-2">
+        <button
+          (click)="navigateToProducts()"
+          class="flex-1 rounded-full bg-orange-500 text-white antialiased font-bold hover:bg-blue-800 px-4 py-2"
+        >
+          Products
+        </button>
+        <button
+          (click)="navigateToCategory()"
+          class="flex-1 rounded-full shadow-2xl border border-gray-200 bg-white font-semibold text-gray-500 px-4 py-2"
+        >
+          Categories
+        </button>
+      </div>
+    </div>
+    <div class="grid grid-cols-3 pt-5 gap-1">
+      <div
+        class="max-w-full flex justify-center items-center px-3 text-center flex-0 lg:w-4/12"
+      >
+        <div
+          class="border px-5 bg-white border-dashed rounded-lg border-gray-300"
+        >
+          <p
+            class="relative pt-2 mb-0 text-transparent z-1 bg-clip-text bg-gradient-to-tl from-orange-700 to-orange-400 !font-semibold !text-xs"
           >
-              <div class="text-center flex flex-col items-center">
-                <div class="bg-gray-50 w-64 rounded-full p-2">
-                  <img class="rounded-full h-28 w-h-28  mx-auto my-4"
-                      src="/assets/images/hotelPofile.jpg" alt="" >
-                  <div class="py-2">
-                      <h3 class="!text-xl !font-bold text-gray-600 px-2">{{captainDetails?.name}}</h3>
-                      <div class="inline-flex text-gray-700  items-center">
-                          <img src="./assets/icons/location.png" alt="location"
-                           class="h-5 w-5 !text-gray-300 mr-1"
-                          >
-                          {{captainDetails?.location}}
-                      </div>
-                  </div>
-                </div>
-              </div>
-              <div class="flex gap-2 px-2 pt-2">
-                  <button
-                  (click)="navigateToProducts()"
-                      class="flex-1 rounded-full bg-lime-400  text-white antialiased font-bold hover:bg-blue-800  px-4 py-2">
-                      Products
-                  </button>
-                  <button
-                  (click)="navigateToCategory()"
-                      class="flex-1 rounded-full shadow-2xl border border-gray-200 bg-white font-semibold text-gray-500  px-4 py-2">
-                      Categories
-                  </button>
-                  <button
-                  (click)="navigateToCategory()"
-                      class="flex-1 rounded-full shadow-2xl border border-gray-200 bg-white font-semibold text-gray-500  px-4 py-2">
-                      Adv
-                  </button>
-              </div>
-          </div>
-          <div class="grid grid-cols-3 pt-5 gap-1">
-            <div class="max-w-full  flex justify-center items-center  px-3  text-center flex-0 lg:w-4/12">
-              <div class="border px-5 bg-white border-dashed rounded-lg border-gray-300">
-                <p class="relative pt-2 mb-0 text-transparent z-1 bg-clip-text bg-gradient-to-tl from-purple-700 to-pink-500 !font-semibold !text-xs">Products</p>
-                <p class="font-bold dark:text-white">
-                  <span class="text-3.5 text-gray-400 font-extrabold">{{captainDetails?.total_product}} </span>
-                  <span id="state2" countTo="2400"></span>
-                </p>
-              </div>
-            </div>
-            <div class="max-w-full  flex justify-center items-center px-3  text-center flex-0 lg:w-4/12">
-              <div class="border px-5 bg-white border-dashed rounded-lg border-gray-300">
-                <p class="relative pt-2 mb-0 text-transparent z-1 bg-clip-text bg-gradient-to-tl from-purple-700 to-pink-500 !font-semibold !text-xs">Categories</p>
-                <p class="font-bold dark:text-white">
-                  <span class="text-3.5 text-gray-400 font-extrabold">{{captainDetails?.total_category}} </span>
-                  <span id="state2" countTo="2400"></span>
-                </p>
-              </div>
-            </div>
-            <div class="max-w-full  flex justify-center items-center px-3  text-center flex-0 lg:w-4/12">
-              <div class="border px-5 bg-white border-dashed rounded-lg border-gray-300">
-                <p class="relative pt-2 mb-0 text-transparent z-1 bg-clip-text bg-gradient-to-tl from-purple-700 to-pink-500 !font-semibold !text-xs">Employees</p>
-                <p class="font-bold dark:text-white">
-                  <span class="text-3.5 text-gray-400 font-extrabold">10 </span>
-                  <span id="state2" countTo="2400"></span>
-                </p>
-              </div>
-            </div>
-          </div>
+            Products
+          </p>
+          <p class="font-bold dark:text-white">
+            <span class="text-3.5 text-gray-400 font-extrabold"
+              >{{ captainDetails?.total_product }}
+            </span>
+            <span id="state2" countTo="2400"></span>
+          </p>
+        </div>
+      </div>
+      <div
+        class="max-w-full flex justify-center items-center px-3 text-center flex-0 lg:w-4/12"
+      >
+        <div
+          class="border px-5 bg-white border-dashed rounded-lg border-gray-300"
+        >
+          <p
+            class="relative pt-2 mb-0 text-transparent z-1 bg-clip-text bg-gradient-to-tl from-orange-700 to-orange-400 !font-semibold !text-xs"
+          >
+            Categories
+          </p>
+          <p class="font-bold dark:text-white">
+            <span class="text-3.5 text-gray-400 font-extrabold"
+              >{{ captainDetails?.total_category }}
+            </span>
+            <span id="state2" countTo="2400"></span>
+          </p>
+        </div>
+      </div>
+      <div
+        class="max-w-full flex justify-center items-center px-3 text-center flex-0 lg:w-4/12"
+      >
+        <div
+          class="border px-5 bg-white border-dashed rounded-lg border-gray-300"
+        >
+          <p
+            class="relative pt-2 mb-0 text-transparent z-1 bg-clip-text bg-gradient-to-tl from-orange-700 to-orange-400 !font-semibold !text-xs"
+          >
+            Employees
+          </p>
+          <p class="font-bold dark:text-white">
+            <span class="text-3.5 text-gray-400 font-extrabold">10 </span>
+            <span id="state2" countTo="2400"></span>
+          </p>
+        </div>
+      </div>
+    </div>
 
-          <div class="flex flex-col w-full  justify-center items-center pt-5 shadow-2xl shadow-gray-100 ">
-            <div class="bg-gray-2 00 flex flex-col justify-center items-center h-60 rounded-md w-56 border border-gray-200">
-              <img [src]="captainDetails?.qr_code" alt="qr" class="h-48 w-56 p-3 pb-1">
-              <button (click)="downloadQR()" class="bg-lime-400 rounded-b-md text-md text-white font-bold px-20 py-3">download</button>
-            </div>
-          </div>
-         </div>
+    <div
+      class="flex flex-col w-full justify-center items-center pt-5"
+    >
+      <div
+        class="bg-gray-100 flex flex-col justify-center items-center h-60 rounded-md w-56 border border-gray-200"
+      >
+        <img
+          [src]="captainDetails?.qr_code"
+          alt="qr"
+          class="h-48 w-56 p-3 pb-1"
+        />
+        <button
+          (click)="downloadQR()"
+          class="bg-orange-500 rounded-b-md text-md text-white font-bold px-20 py-3"
+        >
+          download
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- @if(addAdvertisement){
   <mat-drawer #drawer mode="over" ><app-add-advertisement-modal></app-app-add-advertisement-modal></mat-drawer>

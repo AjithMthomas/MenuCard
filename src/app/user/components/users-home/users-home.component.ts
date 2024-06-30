@@ -1,17 +1,28 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute } from '@angular/router';
-import { ICategory, IProduct, IProductFull } from '../../../waiters/repository/waiter-model';
+import { ICategory, IProductFull } from '../../../waiters/repository/waiter-model';
 import { NgClass } from '@angular/common';
+import { ProductDetailedViewComponent } from '../product-detailed-view/product-detailed-view.component';
+import {
+  MatBottomSheet,
+  MatBottomSheetConfig,
+  MatBottomSheetModule,
+  MatBottomSheetRef,
+} from '@angular/material/bottom-sheet';
+import {MatListModule} from '@angular/material/list';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   standalone:true,
   selector: 'app-users-home',
   templateUrl: './users-home.component.html',
-  imports: [NgClass],
-  styleUrls: ['./users-home.component.scss']
+  styleUrls: ['./users-home.component.scss'],
+  imports: [NgClass,MatButtonModule, MatBottomSheetModule]
 })
 export class UsersHomeComponent implements OnInit {
+
+  private bottomSheet = inject(MatBottomSheet);
 
   restaurantId: string = '';
 
@@ -62,8 +73,11 @@ export class UsersHomeComponent implements OnInit {
       this.filteredProduct = this.products.filter((item)=>{
         return item.category_id === categoryId
       })
-    }
-    
+    }  
+  }
+
+  openDetailedView(){
+    this.bottomSheet.open(ProductDetailedViewComponent);
   }
 
 }
