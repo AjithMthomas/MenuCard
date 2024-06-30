@@ -32,6 +32,15 @@ export interface ICategory {
     is_deleted?: boolean;
 }
 
+export interface IPortionData{
+    id?: number;
+    name : string; 
+    price : number;
+    stock_available: boolean;
+    editMode?: boolean;
+    priceEdit? : number;
+}
+
 export interface CaptainDetail {
     mail : string;
     id : number;

@@ -1,8 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { WaiterServiceService } from '../../services/waiter-service.service';
 import { CaptainDetail } from '../../repository/waiter-model';
 import { HttpClient } from '@angular/common/http';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   standalone:true,
@@ -15,10 +16,11 @@ export class CaptainHomeComponent implements OnInit {
   router = inject(Router)
   waiterService = inject(WaiterServiceService);
   http = inject(HttpClient);
+  @ViewChild('drawer') drawer!: MatDrawer;
 
   captainDetails : CaptainDetail | undefined;
   imageUrl : string | undefined;
-  
+  addAdvertisement = false
   ngOnInit() {
     this.fetchDetails();
   }
@@ -31,6 +33,19 @@ export class CaptainHomeComponent implements OnInit {
 
 
     })
+  }
+
+  addAdv(type?:string){
+      if(type !== 'close'){
+        this.addAdvertisement = true
+        setTimeout(()=>{
+          this.drawer.toggle();
+        },100)
+      }else{
+        this.addAdvertisement = !this.addAdvertisement
+        this.drawer.toggle();  
+      }
+  
   }
 
   getQRBlob(){

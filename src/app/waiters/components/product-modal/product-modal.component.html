@@ -52,8 +52,113 @@
                 <div class="text-red-500 font-medium pt-1 text-sm">Product price is required</div>
               }
             </div>
+            <div class="w-16 ps-2" (click)="openPortionForm()">
+              <img src="/assets/icons/plus.png" alt="" />
+            </div>
           </div>
         </div>
+
+        @if(showPortionForm){
+          <form [formGroup]="portionForm" class="shadow-2xl flex flex-col gap-2 border border-gray-200 bg-gray-50 p-3 rounded-md">
+            <p
+              class="text-gray-500 w-full text-base font-bold mb-2 border-b-2 border-gray-100 py-2"
+            >
+              Add Portions
+            </p>
+            <div class="flex justify-between">
+              <label
+                class="block text-gray-500 text-sm font-bold mb-2 flex items-center"
+                for="category name"
+              >
+                Full Portion
+              </label>
+              <div class="flex flex-col w-36">
+              <input
+                class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                id="username"
+                formControlName="fullPortion"
+                placeholder="Price"
+                type="number"
+              />
+              
+              </div>
+            </div>
+            <div class="flex justify-between">
+              <label
+                class="block text-gray-500 text-sm font-bold mb-2 flex items-center"
+                for="category name"
+              >
+                Half Portion
+              </label>
+              <div class="flex flex-col w-36">
+              <input
+                class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                id="username"
+                formControlName="halfPortion"
+                placeholder="Price"
+                type="number"
+              />
+              
+              </div>
+            </div>
+            <div class="flex justify-between">
+              <label
+                class="block text-gray-500 text-sm font-bold mb-2 flex items-center"
+                for="category name"
+              >
+                Quarter Portion
+              </label>
+              <div class="flex flex-col w-36">
+              <input
+                class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                id="username"
+                formControlName="quarterPortion"
+                placeholder="Price"
+                type="number"
+              />
+              
+              </div>
+            </div>
+            <div class="flex justify-center items-center gap-4 p-3 ps-10">
+              <button
+                class="p-2 bg-lime-500 text-white rounded-md"
+                (click)="submitPortion()"
+                >
+                Submit
+              </button>
+              <button class="p-2 border border-gray-400 rounded-md" (click)="openPortionForm()">Cancel</button>
+            </div>
+          </form>
+          }
+
+        @if(isPortion || portionData.length){
+          <div class="w-52">
+            <p class="text-gray-500 font-bold text-md">Portions</p>
+            @for(item of portionData; track item; let i = $index){
+              @if(!item.editMode){
+                <div class="flex justify-between">
+                  <p>{{item.name}}</p>
+                  <p>{{item.price}}</p>
+                  <div class="flex gap-2">
+                    <p (click)="enableEditMode(i)">Edit</p>
+                    <p >Delete</p>
+                  </div>
+                </div>
+              }@else{
+                <div class="mb-3">
+                  <div class="flex justify-between gap-4">
+                    <p>{{item.name}}</p>
+                    <input type="number" class="w-32 h-8" [(ngModel)]="item.priceEdit" [ngModelOptions]="{standalone: true}">
+                    <div class="flex gap-2">
+                      <p (click)="saveChanges(i)">Save</p>
+                      <p (click)="cancelEdit(i)">Cancel</p>
+                    </div>
+                  </div>
+                </div>
+              }
+            }
+          </div>
+        }
 
         <div class="inline-block relative w-64">
           <div>
