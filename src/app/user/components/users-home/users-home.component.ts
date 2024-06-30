@@ -6,6 +6,7 @@ import { NgClass } from '@angular/common';
 import { ProductDetailedViewComponent } from '../product-detailed-view/product-detailed-view.component';
 import {
   MatBottomSheet,
+  MatBottomSheetConfig,
   MatBottomSheetModule,
   MatBottomSheetRef,
 } from '@angular/material/bottom-sheet';

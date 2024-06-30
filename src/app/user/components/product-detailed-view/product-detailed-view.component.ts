@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-detailed-view.component.scss']
 })
 export class ProductDetailedViewComponent implements OnInit {
-
+  
   constructor() { }
 
   ngOnInit() {
