@@ -6,7 +6,17 @@ style="background-image: url('/assets/images/loginPage.jpg');"
 <div class="w-full flex flex-col justify-center items-center gap-3"> 
   <p class="text-xl text-gray-400 font-bold">Login</p>
  <input type="text" placeholder="Username" id="username" formControlName="username" class="p-3 w-72 border border-gray-200 rounded-md text-gray-500 outline-none">
- <input type="password" placeholder="Password" id="password" formControlName="password" class="p-3 w-72 border border-gray-200 rounded-md text-gray-500 outline-none">
+ <div class="relative">
+  <input type="password" placeholder="Password" id="password" formControlName="password" class="p-3 w-72 border border-gray-200 rounded-md text-gray-500 outline-none">
+  <button type="button" (click)="toggleVisibility()" class="absolute right-3 top-3">
+    @if(passwordVisible){
+      <img src="/assets/icons/eye.png" alt="eye" class="h-6 w-6">
+    }@else {
+      <img src="/assets/icons/eyeClose.png" alt="eye" class="h-6 w-6">
+    }
+    <i class="fas fa-eye-slash"></i>
+  </button>
+</div>
  <button class="w-72 bg-yellow-300 text-white text-lg font-bold p-2 rounded-md"
  (click)="navigateToHome()"
  >Sign in</button>
