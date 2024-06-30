@@ -5,13 +5,15 @@ import { ProductModalComponent } from '../product-modal/product-modal.component'
 import { WaiterServiceService } from '../../services/waiter-service.service';
 import { AlertBoxComponent } from '../../../shared/components/alert-box/alert-box/alert-box.component';
 import { MatDialog } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+import { SearchPipe } from "../../../shared/pipes/search-pipe/search.pipe";
 
 @Component({
-  standalone:true,
-  selector: 'app-waiters-home',
-  templateUrl: './waiters-home.component.html',
-  styleUrls: ['./waiters-home.component.scss'],
-  imports : [MatSidenavModule,ProductModalComponent]
+    standalone: true,
+    selector: 'app-waiters-home',
+    templateUrl: './waiters-home.component.html',
+    styleUrls: ['./waiters-home.component.scss'],
+    imports: [MatSidenavModule, ProductModalComponent, FormsModule, SearchPipe]
 })
 export class WaitersHomeComponent implements OnInit {
   products: { name: string, price: number, image: string, id: number }[] = [];
@@ -24,6 +26,9 @@ export class WaitersHomeComponent implements OnInit {
   private dialog = inject(MatDialog);
   private router = inject(Router);
   private waiterService = inject(WaiterServiceService);
+
+  searchText:string = "";
+
   ngOnInit() {
     // Fetch products when component initializes
     this.fetchProducts();

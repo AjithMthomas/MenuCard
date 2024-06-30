@@ -8,7 +8,7 @@
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
               </svg>
           </div>
-          <input type="" id="search" class="block w-full p-4 ps-10 text-sm text-gray-700 border border-orange-50 rounded-lg shadow shadow-orange-100 bg-gray-50 !outline-none" placeholder="Search categories,food..." required />
+          <input type="" id="search" (input)="filterProduct(0)"   [(ngModel)]="searchText" class="block w-full p-4 ps-10 text-sm text-gray-700 border border-orange-50 rounded-lg shadow shadow-orange-100 bg-gray-50 !outline-none" placeholder="Search categories,food..." required />
           <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-orange-500 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2">Search</button>
       </div>
   </div>
@@ -35,10 +35,10 @@
   
     @if(filteredProduct.length > 0){
     <div class="max-h-[67vh] overflow-y-scroll pe-1 px-1 bg-white bCorder rounded-md pt-3">
-      @for(item of filteredProduct; track item){
+      @for(item of filteredProduct | search:searchText:'name'; track item){
       <div
         class="flex justify-between items-center h-32 order-b border-r rounded-b-2xl py-2 shadow-sm shadow-orange-100 border-gray-200"
-        (click)="openDetailedView()"
+        (click)="openDetailedView(item)"
         >
         <span class="flex w-5/6 flex-row items-center p-3">
           @if(item.image){
@@ -67,10 +67,10 @@
           </span>
         </div>
       </div>
-      }
+    }
     </div>
     }@else{
-    <div class="h-96 w-full flex flex-col justify-center items-center  rounded-full">
+    <div class="h-96 w-full flex flex-col  items-center  rounded-full">
       <img src="/assets/images/empty.gif" alt="" class="h-48 w-56">
       <p class="text-center text-gray-200 font-semibold text-lg">No Items !!!</p>
     </div>

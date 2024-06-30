@@ -12,19 +12,22 @@ import {
 } from '@angular/material/bottom-sheet';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { SearchPipe } from "../../../shared/pipes/search-pipe/search.pipe";
 
 @Component({
-  standalone:true,
-  selector: 'app-users-home',
-  templateUrl: './users-home.component.html',
-  styleUrls: ['./users-home.component.scss'],
-  imports: [NgClass,MatButtonModule, MatBottomSheetModule]
+    standalone: true,
+    selector: 'app-users-home',
+    templateUrl: './users-home.component.html',
+    styleUrls: ['./users-home.component.scss'],
+    imports: [NgClass, MatButtonModule, MatBottomSheetModule, FormsModule, SearchPipe]
 })
 export class UsersHomeComponent implements OnInit {
 
   private bottomSheet = inject(MatBottomSheet);
 
   restaurantId: string = '';
+  searchText: string = "";
 
   userService = inject(UserService);
   route = inject(ActivatedRoute);
@@ -76,8 +79,9 @@ export class UsersHomeComponent implements OnInit {
     }  
   }
 
-  openDetailedView(){
-    this.bottomSheet.open(ProductDetailedViewComponent);
+  openDetailedView(item:IProductFull){
+
+    this.bottomSheet.open(ProductDetailedViewComponent,{data:item});
   }
 
 }

@@ -25,11 +25,18 @@ export class CaptainLoginComponent implements OnInit {
   private authService = inject(AuthService);
   private dialog = inject(MatDialog);
 
+  passwordVisible = false;
+
+
 
   ngOnInit() {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
+    });
+
+    this.loginForm.controls['password'].valueChanges.subscribe((value:any) => {
+      this.passwordVisible =!value;
     });
   }
 
@@ -58,5 +65,19 @@ contactAdmin(){
       type:'info'
     }
   });
+
+  
+}
+
+toggleVisibility() {
+  this.passwordVisible =!this.passwordVisible;
+  const passwordInput = document.getElementById('password') as HTMLInputElement | null;
+  if (passwordInput) {
+    if (this.passwordVisible) {
+      passwordInput.type = 'text';
+    } else {
+      passwordInput.type = 'password';
+    }
+  }
 }
 }
