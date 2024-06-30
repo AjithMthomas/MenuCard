@@ -6,19 +6,23 @@ import {MatDrawer, MatSidenavModule} from '@angular/material/sidenav';
 import { CategoryModalComponent } from '../category-modal/category-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertBoxComponent } from '../../../shared/components/alert-box/alert-box/alert-box.component';
+import { FormsModule } from '@angular/forms';
+import { SearchPipe } from "../../../shared/pipes/search-pipe/search.pipe";
 
 @Component({
-  selector: 'app-waiter-category',
-  standalone: true,
-  imports: [MatSidenavModule,CategoryModalComponent],
-  templateUrl: './waiter-category.component.html',
-  styleUrl: './waiter-category.component.scss'
+    selector: 'app-waiter-category',
+    standalone: true,
+    templateUrl: './waiter-category.component.html',
+    styleUrl: './waiter-category.component.scss',
+    imports: [MatSidenavModule, CategoryModalComponent, FormsModule, SearchPipe]
 })
 export class WaiterCategoryComponent {
   
   categories : ICategory[]=[]
   selectedCategoryId : number | undefined;
   addNewCategory : boolean = false;
+
+  searchText:string = "";
   
   @ViewChild('editdrawer') editdrawer!: MatDrawer;
   @ViewChild('drawer') drawer!: MatDrawer;

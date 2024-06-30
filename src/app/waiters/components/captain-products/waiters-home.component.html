@@ -2,15 +2,28 @@
 
 <div class="h-screen">
   <!-- products Heading -->
-  <div class="flex pl-3 fixed bg-white w-full h-12 border border-y-gray-300">
+  <div class="flex pl-3 fixed bg-white w-full h-12 border">
     <div class="flex items-center justify-center" (click)="navigateToHome()">
-      <img src="/assets/icons/back.png" alt="" class="w-4 h-4 cursor-pointer" >
+      <img src="/assets/icons/back.png" alt="" class="w-6 h-6 cursor-pointer" >
     </div>
-    <p class="p-2  text-gray-500 font-bold text-xl">Products</p>
+    <p class="p-2 text-gray-500 font-bold text-xl">Products</p>
   </div>
   <!-- Products List -->
-  <div class="mb-32 pt-12">
-    @for(item of products; track item){
+   <div>
+    <div class="max-w-md mx-auto px-3 pt-3">   
+      <label for="arch" class="mb-2 text-sm font-medium text-gray-600 sr-only">Search</label>
+      <div class="relative">
+          <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+              <svg class="w-4 h-4 text-gray-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+              </svg>
+          </div>
+          <input type="" id="search"  [(ngModel)]="searchText" class="block w-full p-4 ps-10 text-sm text-gray-700 border border-orange-50 rounded-lg shadow shadow-orange-100 bg-gray-50 !outline-none" placeholder="Search categories,food..." required />
+          <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-orange-500 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2">Search</button>
+      </div>
+  </div>
+  <div class="mb-32 pt-2 overflow-y-scroll">
+    @for(item of products | search:searchText:'name'; track item){
     <div class=" grid grid-cols-5 gap-2 h-28 p-2 border border-b-gray-300">
       <div class="h-full w-full col-span-3 grid grid-cols-3">
          
@@ -31,7 +44,7 @@
         <div class="h-full w-full col-span-2 flex gap-3 justify-center items-center">
         <p class="font-semibold text-gray-500 !mb-0 text-md">${{item.price}}</p>
         <div class="bg-blue-50 h-10 w-10 rounded-full font-semibold flex justify-center items-center">
-          <img src="/assets/icons/pencil.png" alt="Edit" class="h-4 w-4" (click)="edit(item.id)">
+          <img src="/assets/icons/pencil.png" alt="Edit" class="h-5 w-5" (click)="edit(item.id)">
         </div>
         <div class="bg-red-50 h-10 w-10 rounded-full flex justify-center items-center">
           <img src="/assets/icons/delete.png" alt="Delete" class="h-4 w-4" (click)="deleteProduct(item.id)">
@@ -41,7 +54,7 @@
     </div>
     }
   </div>
-  
+</div>
   <div class="fixed bottom-5 left-1/2 transform -translate-x-1/2 mb-8 w-60">
     <button (click)="add()" class="bg-orange-500 text-white px-16 py-5 rounded-lg font-semibold">Add New Item</button>
   </div>
