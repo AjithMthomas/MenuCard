@@ -1,8 +1,11 @@
-import { Component, Output,EventEmitter, ElementRef, inject, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, Output,EventEmitter, ElementRef, inject, OnInit, Input } from '@angular/core';
 import {MatSelectModule} from '@angular/material/select';
 import { WaiterServiceService } from '../../services/waiter-service.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { IPortionData } from '../../repository/waiter-model';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertBoxComponent } from '../../../shared/components/alert-box/alert-box/alert-box.component';
 
 @Component({
   selector: 'app-product-modal',
@@ -11,7 +14,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './product-modal.component.html',
   styleUrl: './product-modal.component.scss'
 })
-export class ProductModalComponent implements OnInit, OnDestroy {
+export class ProductModalComponent implements OnInit {
 
   @Input() productId :number | undefined;
   @Input() type : 'add' | 'edit' = 'add';
@@ -20,6 +23,7 @@ export class ProductModalComponent implements OnInit, OnDestroy {
 
   private elementRef = inject(ElementRef)
   private fb = inject(FormBuilder)
+  private dialog = inject(MatDialog)
   private waiterService = inject(WaiterServiceService);
   categories : any[]=[];
 
@@ -31,7 +35,12 @@ export class ProductModalComponent implements OnInit, OnDestroy {
     productCategory: ['',Validators.required],
     productImage: [''],
     productStock: [true],
+  });
 
+  portionForm : FormGroup = this.fb.group({
+    fullPortion: ['', Validators.required],
+    halfPortion: ['', Validators.required],
+    quarterPortion: ['']
   });
 
 
@@ -43,6 +52,8 @@ export class ProductModalComponent implements OnInit, OnDestroy {
         this.waiterService.fetchProductWithId(this.productId).subscribe((res) => {
           if(res && res.data){
             const productData = res.data; 
+            console.log(productData);
+            
             
             this.productForm.patchValue({
               productName: productData.name,
@@ -50,12 +61,58 @@ export class ProductModalComponent implements OnInit, OnDestroy {
               productCategory: productData.category_id,
               productStock: productData.stock_available
             });
+            console.log(productData.portion,'portons');
+            
+
+            if(productData.portion && productData.product_portion.length){
+              this.portionData = productData.product_portion.map((item : IPortionData) => ({
+                ...item,
+                editMode: false  // Adding editMode property with initial value false
+              }));
+              console.log(this.portionData);
+              
+              
+              // this.portionForm.patchValue({
+              //   fullPortion: productData.portions,
+              //   halfPortion: productData.price,
+              // });
+  
+            }
           }
         });
       }
     }
     
   }
+
+  enableEditMode(index: number) {
+    this.portionData[index].editMode = true;
+    this.portionData[index].priceEdit = this.portionData[index].price; 
+  }
+  
+  saveChanges(index: number) {
+    const newPrice = this.portionData[index].priceEdit;
+    const id = this.portionData[index].id;
+    if(newPrice && id){
+      const formData = {
+        "price" : newPrice
+      }
+      this.waiterService.editPortion(id,formData).subscribe((res)=>{
+        if(res){
+          console.log(res);
+          
+          this.portionData[index].price = newPrice;
+          this.portionData[index].editMode = false;
+        }
+      })
+     
+    }
+  }
+  
+  cancelEdit(index: number) {
+    this.portionData[index].editMode = false;
+  }
+  
 
   fetchCategories(){
     this.waiterService.fetchCategories().subscribe((res)=>{
@@ -65,6 +122,9 @@ export class ProductModalComponent implements OnInit, OnDestroy {
   }
 
   showCategoryForm = false;
+  showPortionForm = false;
+  portionData : IPortionData[]=[]
+  isPortion = false;
 
   close() {
     this.closeEvent.emit(); 
@@ -74,6 +134,12 @@ export class ProductModalComponent implements OnInit, OnDestroy {
     this.showCategoryForm = !this.showCategoryForm;
     this.categoryName = '';
   }
+
+  openPortionForm(){
+    this.showPortionForm = !this.showPortionForm;
+  }
+
+
 
 
   onFileSelected(event: Event) {
@@ -106,6 +172,52 @@ export class ProductModalComponent implements OnInit, OnDestroy {
     }
   }
 
+  submitPortion() {
+    if (this.portionForm.valid) {
+      const fullPortionPrice = this.portionForm.get('fullPortion')?.value;
+      const halfPortionPrice = this.portionForm.get('halfPortion')?.value;
+      const quarterPortionPrice = this.portionForm.get('quarterPortion')?.value;
+
+      this.portionData = [];
+
+      this.portionData.push({
+        name: 'Full',
+        price: fullPortionPrice,
+        stock_available: true 
+      });
+
+      this.portionData.push({
+        name: 'Half',
+        price: halfPortionPrice,
+        stock_available: true 
+      });
+      if(quarterPortionPrice){
+        this.portionData.push({
+          name: 'Quarter',
+          price: quarterPortionPrice,
+          stock_available: true 
+        });
+      }
+      this.isPortion = true;
+      const productPriceControl = this.productForm.get('productPrice');
+      productPriceControl?.clearValidators();
+      productPriceControl?.updateValueAndValidity();
+      this.openPortionForm();
+      console.log(this.portionData);
+  } else {
+    const dialogRef = this.dialog.open(AlertBoxComponent, {
+      width: '350px',
+      data: {
+        title: 'Info',
+        message: 'Full and Half portion prices are required.',
+        confirmText: 'Ok',
+        type:'info'
+
+      }
+    });
+  }
+}
+
   submitProduct(): void {
     // console.log('here');
     
@@ -114,10 +226,20 @@ export class ProductModalComponent implements OnInit, OnDestroy {
     if (this.productForm.valid) {
       const formData = new FormData();
       formData.append('name', this.productForm.get('productName')?.value);
-      formData.append('price', this.productForm.get('productPrice')?.value);
       formData.append('category_id', this.productForm.get('productCategory')?.value);
       formData.append('image', this.productForm.get('productImage')?.value); 
       formData.append('stock_available', this.productForm.get('productStock')?.value);
+      if (this.isPortion && this.portionData.length > 0) {
+        const portionsArray = JSON.stringify(this.portionData);
+        formData.append('portions', portionsArray);
+        formData.append('portion', 'true');
+        formData.append('price', this.portionForm.get('fullPortion')?.value);
+
+      }else{
+        formData.append('price', this.productForm.get('productPrice')?.value);
+        formData.append('portion', 'false');
+      }
+      
       formData.forEach((value,key) => {
         console.log(key+" "+value)
       });
@@ -155,10 +277,7 @@ export class ProductModalComponent implements OnInit, OnDestroy {
   }
 
 
-  ngOnDestroy(): void {
-      console.log('destroyed');
-      
-  }
+
 
 
 }
