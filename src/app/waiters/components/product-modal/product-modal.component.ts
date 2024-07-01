@@ -199,7 +199,7 @@ export class ProductModalComponent implements OnInit {
             productCategory: response.data.id,
           });
           this.fetchCategories();
-
+        
         },
         (error) => {
           console.error('Error adding category:', error);
@@ -283,6 +283,16 @@ export class ProductModalComponent implements OnInit {
             console.log('Product added successfully:', response);
             this.productForm.reset();
             this.close();
+            const dialogRef = this.dialog.open(AlertBoxComponent, {
+              width: '350px',
+              data: {
+                title: 'Success',
+                message: 'Product added succesfully',
+                confirmText: 'Ok',
+                type:'success'
+        
+              }
+            });
           },
           (error) => {
             console.error('Error adding product:', error);
