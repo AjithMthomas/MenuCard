@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute } from '@angular/router';
-import { ICategory, IProductFull } from '../../../waiters/repository/waiter-model';
+import { ICategory, IProductFull, Product } from '../../../waiters/repository/waiter-model';
 import { NgClass } from '@angular/common';
 import { ProductDetailedViewComponent } from '../product-detailed-view/product-detailed-view.component';
 import {
@@ -33,8 +33,8 @@ export class UsersHomeComponent implements OnInit {
   route = inject(ActivatedRoute);
 
   categories : ICategory[] =[];
-  products : IProductFull[]=[]
-  filteredProduct : IProductFull[]=[]
+  products : Product[]=[]
+  filteredProduct : Product[]=[]
   filteredCategoryId: number = 0;
   forYou =[1,2,2,3]
 

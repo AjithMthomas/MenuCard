@@ -38,6 +38,7 @@
       @for(item of filteredProduct | search:searchText:'name'; track item){
       <div
         class="flex justify-between items-center h-32 order-b border-r rounded-b-2xl py-2 shadow-sm shadow-orange-100 border-gray-200"
+        [ngClass]="{'brightness-50 bg-red-50':!item.stock_available}"
         (click)="openDetailedView(item)"
         >
         <span class="flex w-5/6 flex-row items-center p-3">

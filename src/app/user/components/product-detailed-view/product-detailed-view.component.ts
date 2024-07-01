@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
-import { IProductFull } from '../../../waiters/repository/waiter-model';
+import { Product } from '../../../waiters/repository/waiter-model';
 
 @Component({
   standalone:true,
@@ -11,7 +11,8 @@ import { IProductFull } from '../../../waiters/repository/waiter-model';
 export class ProductDetailedViewComponent implements OnInit {
   
   constructor() { }
-  product:IProductFull = inject(MAT_BOTTOM_SHEET_DATA);
+
+  product:Product = inject(MAT_BOTTOM_SHEET_DATA);
 
   ngOnInit() {
   }
