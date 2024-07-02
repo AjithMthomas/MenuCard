@@ -15,6 +15,7 @@
       <span class="text-lg flex flex-row">
         <img src="/assets/icons/rupee.png " alt="rupee" class="h-6 w-5 pt-1"><p class="text-center">{{product.price}}</p></span>
       </span>
+      <p class="!text-base text-gray-500">{{product.category.name}}</p>
       @if(!product.stock_available){
         <img src="/assets/icons/sold out.png" alt="soldOut" class="h-14">
       }
