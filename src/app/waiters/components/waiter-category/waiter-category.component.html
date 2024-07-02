@@ -2,7 +2,7 @@
 
     <div class="h-screen">
       <!-- products Heading -->
-      <div class="flex pl-3 fixed bg-white w-full h-12 border">
+      <div class="flex pl-3 fixed bg-gray-50 w-full h-12 border">
         <div class="flex items-center justify-center" (click)="navigateToHome()">
           <img src="/assets/icons/back.png" alt="" class="w-6 h-6 cursor-pointer" >
         </div>
@@ -21,7 +21,7 @@
         </div>
     </div>
       <!-- Products List -->
-      <div class="mb-32 pt-2">
+      <div class="pb-32 pt-2">
         @for(item of categories | search:searchText:'name'; track item){
         <div class=" grid grid-cols-5 gap-2 h-28 p-2 border border-b-gray-300">
           <div class="h-full w-full col-span-3 grid grid-cols-3">

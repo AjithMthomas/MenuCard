@@ -2,7 +2,7 @@
 
 <div class="h-screen">
   <!-- products Heading -->
-  <div class="flex pl-3 fixed bg-white w-full h-12 border">
+  <div class="flex pl-3 fixed bg-gray-50 w-full h-12 border">
     <div class="flex items-center justify-center" (click)="navigateToHome()">
       <img src="/assets/icons/back.png" alt="" class="w-6 h-6 cursor-pointer" >
     </div>
@@ -22,7 +22,7 @@
           <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-orange-500 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2">Search</button>
       </div>
   </div>
-  <div class="mb-32 pt-2 overflow-y-scroll">
+  <div class="b-32 pt-2 overflow-y-scroll">
     @for(item of products | search:searchText:'name'; track item){
     <div class=" grid grid-cols-5 gap-2 h-28 p-2 border border-b-gray-300">
       <div class="h-full w-full col-span-3 grid grid-cols-3">
