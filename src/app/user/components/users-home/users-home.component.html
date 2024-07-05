@@ -13,8 +13,8 @@
       </div>
   </div>
     <div
-    class="gap-6 w-full max-h-36 flex flex-row  overflow-x-scroll p-3 bg-white"
-  >
+    class="gap-3 w-full max-h-36 flex flex-row  overflow-x-scroll p-3 bg-white"
+  > 
   <div
   class="rounded-md bg-gradient-to-b from-white to-orange-400 flex flex-col justify-center items-center min-w-24 min-h-16 shadow-md shadow-orange-400"
   (click)="filterProduct(0)"
@@ -34,12 +34,11 @@
   </div>
   
     @if(filteredProduct.length > 0){
-    <div class="max-h-[67vh] overflow-y-scroll pe-1 px-1 bg-white bCorder rounded-md pt-3">
+    <div class="max-h-[67vh] overflow-y-scroll pe-1 px-1 bg-white bCorder rounded-md pb-10">
       @for(item of filteredProduct | search:searchText:'name'; track item){
       <div
-        class="flex justify-between items-center h-32 order-b border-r rounded-b-2xl py-2 shadow-sm shadow-orange-100 border-gray-200"
+        class="flex justify-between items-center  border-b border-r rounded-b-2xl py-2 shadow-sm shadow-orange-100 border-gray-200"
         [ngClass]="{'brightness-50 bg-red-50':!item.stock_available}"
-        (click)="openDetailedView(item)"
         >
         <span class="flex w-5/6 flex-row items-center p-3">
           @if(item.image){
@@ -55,17 +54,22 @@
               class="rounded-3xl h-24 w-24 border border-gray-100"
             />
           }
-          <p class="text-base font-medium text-gray-500 ps-3 pt-3">
-            {{ item.name.toUpperCase() }}
-          </p>
-        </span>
-        <div class="flex flex-1 justify-center pe-2">
-          <span class="flex flex-row items-center">
-            <img src="/assets/icons/rupee.png" alt="rupee" class="h-4 w-4" />
-            <p class="text-md font-semibold text-gray-500 pt-3">
-              {{ item.price }}
+          <div class="flex flex-col  justify-center">
+            <p class="text-base font-medium text-gray-500 ps-4 pt-3">
+              {{ item.name.toUpperCase() }}
             </p>
-          </span>
+            <span class="flex flex-row items-center ps-4">
+              <img src="/assets/icons/rupee.png" alt="rupee" class="h-4 w-4" />
+              <p class="text-base font-medium text-gray-500 pt-3">
+                {{ item.price }}
+              </p>
+            </span>
+          </div>
+        </span>
+        <div class="flex flex-1 justify-center pe-4">
+          <button type="submit" class="text-white bg-orange-500 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2"
+          (click)="openDetailedView(item)"
+          >view</button>
         </div>
       </div>
     }
