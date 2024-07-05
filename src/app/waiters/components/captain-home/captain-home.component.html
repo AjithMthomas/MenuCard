@@ -17,11 +17,13 @@
         <div class="bg-gray-100 w-64 rounded-full p-2">
           <div>
             @if(captainDetails?.image_url){
-              <img
-                class="rounded-full h-36 w-36 mx-auto"
-                src="{{captainDetails?.image_url}}"
-                alt=""
-              />
+              @defer(){
+                <img
+                  class="rounded-full h-36 w-36 mx-auto"
+                  src="{{captainDetails?.image_url}}"
+                  alt=""
+                />
+              }
             }@else{
               <img
                 class="rounded-full h-36 w-36"
@@ -57,6 +59,12 @@
           class="flex-1 rounded-full shadow-2xl border border-gray-200 bg-white font-semibold text-gray-500 px-4 py-2"
         >
           Categories
+        </button>
+        <button
+          (click)="navigateToAdv()"
+          class="flex-1 rounded-full shadow-2xl border border-gray-200 bg-white font-semibold text-gray-500 px-4 py-2"
+        >
+          Advertisement
         </button>
       </div>
     </div>
@@ -139,7 +147,4 @@
     </div>
   </div>
 </div>
-<!-- @if(addAdvertisement){
-  <mat-drawer #drawer mode="over" ><app-add-advertisement-modal></app-app-add-advertisement-modal></mat-drawer>
-} -->
-<!-- </mat-drawer-container> -->
+

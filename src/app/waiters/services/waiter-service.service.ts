@@ -13,6 +13,15 @@ export class WaiterServiceService {
   fetchCaptainDetails(){
     return this.waiterRepository.fetchCaptainDetails();
   }
+  setAdvertisement(formData:FormData){
+    return this.waiterRepository.setAdvertisement(formData);
+  }
+  updateAdvertisement(id:number,formData:FormData){
+    return this.waiterRepository.updateAdvertisement(id,formData);
+  }
+  getAdvertisement(){
+    return this.waiterRepository.getAdvertisement();
+  }
 
   fetchProducts(): Observable<any> {
     return this.waiterRepository.fetchProducts()

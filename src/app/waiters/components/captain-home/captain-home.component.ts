@@ -35,17 +35,9 @@ export class CaptainHomeComponent implements OnInit {
     })
   }
 
-  addAdv(type?:string){
-      if(type !== 'close'){
-        this.addAdvertisement = true
-        setTimeout(()=>{
-          this.drawer.toggle();
-        },100)
-      }else{
-        this.addAdvertisement = !this.addAdvertisement
-        this.drawer.toggle();  
-      }
-  
+  navigateToAdv(){
+    this.router.navigate(['/captain/adv'])
+
   }
 
   getQRBlob(){

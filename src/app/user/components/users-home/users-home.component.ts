@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute } from '@angular/router';
-import { ICategory, IProductFull, Product } from '../../../waiters/repository/waiter-model';
+import { ICategory, IProductFull, IupdatedmageData, Product } from '../../../waiters/repository/waiter-model';
 import { NgClass } from '@angular/common';
 import { ProductDetailedViewComponent } from '../product-detailed-view/product-detailed-view.component';
 import {
@@ -48,6 +48,7 @@ export class UsersHomeComponent implements OnInit {
         this.restaurantId = restaurantId;
         this.fetchCategories(restaurantId); 
         this.fetchProducts(restaurantId); 
+        this.fetchAdvertisement(restaurantId); 
       }
     });  
   }
@@ -56,6 +57,13 @@ export class UsersHomeComponent implements OnInit {
     this.userService.fetchCategories(uid).subscribe((res)=>{
       this.categories = res.data
       console.log(res.data,'categoriesssss');  
+    });
+  }
+
+  fetchAdvertisement(uid:string){
+    this.userService.getAdvertisement(uid).subscribe((res)=>{
+      this.userService.advertisements = res.data
+      console.log(res.data,'advvvv');  
     });
   }
  

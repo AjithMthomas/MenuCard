@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { UserRepository } from '../repository/user-repository';
 import { Observable } from 'rxjs';
+import { IupdatedmageData } from '../../waiters/repository/waiter-model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,9 @@ import { Observable } from 'rxjs';
 export class UserService {
 
   userRepository = inject(UserRepository);
+
+  advertisements : IupdatedmageData[]=[]
+
 
   fetchCategories(uid:string): Observable<any>{
     return this.userRepository.fetchCategories(uid)
@@ -17,4 +21,7 @@ export class UserService {
     return this.userRepository.fetchProducts(uid)
   }
 
+  getAdvertisement(uid:string){
+    return this.userRepository.getAdvertisement(uid);
+  }
 }

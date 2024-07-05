@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { UserService } from '../../../user/services/user.service';
 
 @Component({
   standalone:true,
@@ -8,8 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdvertismentSliderComponent implements OnInit {
 
-  constructor() { }
-
+  userService = inject(UserService);
+  
   ngOnInit() {
   }
 

@@ -21,4 +21,9 @@ export class UserRepository {
     const params = { user_id };
     return this.http.get<any>(`${this.baseUrl}/product`, { params })
   }
+
+  getAdvertisement(user_id:string){
+    const params = { user_id };
+    return this.http.get<any>(`${this.baseUrl}/advertisement`, { params })
+  }
 }

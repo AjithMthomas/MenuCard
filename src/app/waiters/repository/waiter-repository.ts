@@ -60,6 +60,20 @@ export class WaiterRepository {
     );  
   }
 
+  setAdvertisement(formData:FormData){
+    return this.http.post<any>(`${this.baseUrl}/user/advertisement`, 
+      formData
+      );  
+  }
+  updateAdvertisement(id:number,formData:FormData){
+    return this.http.patch<any>(`${this.baseUrl}/user/advertisement/${id}`, 
+      formData
+      );  
+  }
+  getAdvertisement(){
+    return this.http.get<any>(`${this.baseUrl}/user/advertisement`      );  
+  }
+
   deleteCategory(id:number): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/user/category/${id}`
     );  

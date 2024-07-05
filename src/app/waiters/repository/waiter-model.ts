@@ -5,6 +5,18 @@ export interface IProduct {
     image: string;
 }
 
+export interface IImageData { 
+    order : number;
+    image: File | null
+     
+}
+export interface IupdatedmageData { 
+    id: number;
+    position : number;
+    image: string;
+     
+}
+
 export interface IProductFull{
     id: number;
     created_by_user_id: number;
