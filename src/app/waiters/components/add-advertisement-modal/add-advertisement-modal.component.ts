@@ -6,6 +6,7 @@ import { IImageData, IupdatedmageData } from '../../repository/waiter-model';
 import { AlertBoxComponent } from '../../../shared/components/alert-box/alert-box/alert-box.component';
 import { Dialog } from '@angular/cdk/dialog';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   standalone:true,
@@ -16,10 +17,11 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class AddAdvertisementModalComponent implements OnInit {
 
-  advCount=3
+  advCount = 5;
 
   waiterService = inject(WaiterServiceService);
   dialog = inject(MatDialog);
+  private router = inject(Router);
 
   ngOnInit() {
     initFlowbite();
@@ -177,7 +179,9 @@ updateFile(index:number){
   }
 }
 
-
+navigateToHome(){
+  this.router.navigate(['/captain/index'])
+}
 
 clearFile(index: number): void {
   this.files[index] = { order: index + 1, image: null };
