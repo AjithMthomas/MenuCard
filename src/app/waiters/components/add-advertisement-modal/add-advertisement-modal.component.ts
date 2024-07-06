@@ -3,6 +3,9 @@ import { Component, OnInit, inject } from '@angular/core';
 import { initFlowbite } from 'flowbite';
 import { WaiterServiceService } from '../../services/waiter-service.service';
 import { IImageData, IupdatedmageData } from '../../repository/waiter-model';
+import { AlertBoxComponent } from '../../../shared/components/alert-box/alert-box/alert-box.component';
+import { Dialog } from '@angular/cdk/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   standalone:true,
@@ -16,6 +19,7 @@ export class AddAdvertisementModalComponent implements OnInit {
   advCount=3
 
   waiterService = inject(WaiterServiceService);
+  dialog = inject(MatDialog);
 
   ngOnInit() {
     initFlowbite();
@@ -93,12 +97,33 @@ submitFile(index:number){
         if(res.data){
           const data = res.data
           this.updatedFiles[index] = {id:data.id, position: data.position, image:data.image  }
+          this.files[index] = { order: index + 1, image: null };
+          this.imageUrls[index] = null;
+          const dialogRef = this.dialog.open(AlertBoxComponent, {
+            width: '350px',
+            data: {
+              title: 'Success',
+              message: 'Advertisement image added successfully',
+              confirmText: 'Ok',
+              type:'success'
+            }
+          });
         }
         
       }
     })
   }else{
-    alert('noooo')
+    const dialogRef = this.dialog.open(AlertBoxComponent, {
+      width: '350px',
+      data: {
+        title: 'Warning',
+        message: 'Please add the file',
+        confirmText: 'Yes',
+        cancelText: 'No',
+        type:'critical'
+
+      }
+    });
   }
 } 
 
@@ -122,14 +147,33 @@ updateFile(index:number){
         if(res.data){
           const data = res.data
           this.updatedFiles[index] = { id:data.id,position: data.position, image:data.image  }
+          this.files[index] = { order: index + 1, image: null };
+          this.imageUrls[index] = null;
+          const dialogRef = this.dialog.open(AlertBoxComponent, {
+            width: '350px',
+            data: {
+              title: 'Success',
+              message: 'Advertisement image updated successfully',
+              confirmText: 'Ok',
+              type:'success'
+            }
+          });
         }
         
       }
     })
   }else{
-    alert('noooo')
-    console.log('nooo');
-    
+    const dialogRef = this.dialog.open(AlertBoxComponent, {
+      width: '350px',
+      data: {
+        title: 'Warning',
+        message: 'Please add the file',
+        confirmText: 'Yes',
+        cancelText: 'No',
+        type:'critical'
+
+      }
+    });
   }
 }
 

@@ -22,14 +22,15 @@
         </label>
   
         <div class="flex flex-col gap-2">
-          @if(files[i]?.image){
+        @if(files[i]?.image){
             <button class=" bg-orange-500 text-white p-2" (click)="clearFile(i)">clear</button>
-          }
+          
           @if(updatedFiles[i]?.image){
             <button class=" bg-orange-500 text-white p-2" (click)="updateFile(i)">Update</button>
           }@else{
             <button class=" bg-orange-500 text-white p-2" (click)="submitFile(i)">Submit</button>
           }
+        }
         </div>
     </div>
   }
