@@ -11,6 +11,7 @@ import { Product } from '../../../waiters/repository/waiter-model';
 export class ProductDetailedViewComponent implements OnInit {
   
   constructor() { }
+  rating  = [1,2,3,4,5]
 
   product:Product = inject(MAT_BOTTOM_SHEET_DATA);
 
