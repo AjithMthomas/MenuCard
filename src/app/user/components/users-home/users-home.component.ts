@@ -62,7 +62,7 @@ export class UsersHomeComponent implements OnInit {
 
   fetchAdvertisement(uid:string){
     this.userService.getAdvertisement(uid).subscribe((res)=>{
-      this.userService.advertisements = res.data
+      this.userService.advertisements.set(res.data)
       console.log(res.data,'advvvv');  
     });
   }
