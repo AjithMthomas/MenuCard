@@ -139,11 +139,11 @@
             @for(item of portionData; track item; let i = $index){
               @if(!item.editMode){
                 <div class="flex justify-between">
-                  <p>{{item.name}}</p>
+                  <p class="text-gray-700 font-bold text-center">{{item.name}}</p>
                   <p>{{item.price}}</p>
-                  <div class="flex gap-2">
-                    <p (click)="enableEditMode(i)">Edit</p>
-                      <p (click)="deletPortion(i)" >Delete</p>
+                  <div class="flex gap-2 items-center">
+                    <p (click)="enableEditMode(i)" class="px-2 bg-blue-100 text-blue-500 rounded-md">Edit</p>
+                      <p (click)="deletPortion(i)" class="px-2 bg-red-100 text-red-500 rounded-md">Delete</p>
                   </div>
                 </div>
               }@else{
@@ -152,8 +152,8 @@
                     <p>{{item.name}}</p>
                     <input type="number" class="w-32 h-8" [(ngModel)]="item.priceEdit" [ngModelOptions]="{standalone: true}">
                     <div class="flex gap-2">
-                      <p (click)="saveChanges(i)">Save</p>
-                      <p (click)="cancelEdit(i)">Cancel</p>
+                      <p (click)="saveChanges(i)" class="p-2 bg-blue-100 text-green-500 rounded-md">Save</p>
+                      <p (click)="cancelEdit(i)" class="p-2 bg-blue-100 text-blue-500 rounded-md">Cancel</p>
                     </div>
                   </div>
                 </div>
