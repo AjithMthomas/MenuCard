@@ -62,6 +62,7 @@ export class UsersHomeComponent implements OnInit {
       this.categories.unshift(specialCategory); 
     }
       initFlowbite();
+      this.filterProduct(this.categories[0].id)   
     });
   }
 
@@ -74,15 +75,17 @@ export class UsersHomeComponent implements OnInit {
   fetchProducts(uid:string){
     this.userService.fetchProducts(uid).subscribe((res)=>{
       this.products = res.data
-      this.filteredProduct = res.data
+      // this.filteredProduct = res.data
+      this.filterProduct(this.categories[0].id)
+
     });
   }
  
-  filterProduct(categoryId:number){
+  filterProduct(categoryId:number){    
     if(categoryId === 0){
       this.filteredProduct = this.products
       this.filteredCategoryId = 0;
-    }else{
+    }else{      
       this.filteredCategoryId = categoryId
       this.filteredProduct = this.products.filter((item)=>{
         return item.category_id === categoryId
