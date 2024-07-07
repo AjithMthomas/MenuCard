@@ -40,15 +40,14 @@ export class UsersHomeComponent implements OnInit {
 
 
   ngOnInit() {
-    initFlowbite();
     this.route.paramMap.subscribe(params => {
       const restaurantId = params.get('restaurantId');
       if(restaurantId){
         localStorage.setItem('restaurantId', restaurantId);
+        this.fetchAdvertisement(restaurantId); 
         this.restaurantId = restaurantId;
         this.fetchCategories(restaurantId); 
         this.fetchProducts(restaurantId); 
-        this.fetchAdvertisement(restaurantId); 
       }
     });  
   }

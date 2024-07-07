@@ -16,7 +16,6 @@ export class AdvertismentSliderComponent implements OnInit {
   adv: IupdatedmageData[] =[]
   
   ngOnInit() {
-    
     this.userService.adv.subscribe((res: IupdatedmageData[]) => {
       res.forEach(item => this.adv.push(item));
       initFlowbite();
