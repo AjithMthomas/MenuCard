@@ -16,7 +16,7 @@
     class="gap-3 w-full max-h-36 flex overflow-x-scroll p-3 bg-white"
   > 
   <div
-  class="rounded-md  flex flex-col min-w-24 min-h-14 shadow shadow-orange-200 bg-orange-100"
+  class="rounded-md  flex flex-col min-w-24 min-h-14 shadow-md shadow-orange-300 bg-orange-50"
   (click)="filterProduct(0)"
   >
    <img src="/assets/images/all.gif" alt="categories" class="max-w-24 max-h-14 rounded-md rounded-br-full bg-white">
@@ -25,10 +25,10 @@
   </div>
     @for(item of categories; track item){
     <div
-      class="rounded-md   flex flex-col min-w-24 min-h-14 shadow shadow-orange-200 bg-orange-100 "
+      class="rounded-md   flex flex-col min-w-24 min-h-14 shadow-md shadow-orange-300 bg-orange-50 "
       (click)="filterProduct(item.id)">
        <img src="{{item.image}}" alt="categories" class="max-w-24 max-h-14 rounded-md rounded-br-full bg-white">
-       <p class="text-orange-500 text-center font-medium pt-1 w-full  text-xs">{{ item.name.toUpperCase() }}</p>
+       <p class="text-orange-500 text-center font-medium pt-1 w-full  text-xs px-1">{{ item.name.toUpperCase() }}</p>
       </div>
     }
   </div>
