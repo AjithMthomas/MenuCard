@@ -55,16 +55,19 @@ export class UsersHomeComponent implements OnInit {
   fetchCategories(uid:string){
     this.userService.fetchCategories(uid).subscribe((res)=>{
       this.categories = res.data
+      const specialCategoryIndex = this.categories.findIndex(category => category.name.toLowerCase() === 'specials');
+    if (specialCategoryIndex !== -1) {
+      const specialCategory = this.categories[specialCategoryIndex];
+      this.categories.splice(specialCategoryIndex, 1); 
+      this.categories.unshift(specialCategory); 
+    }
       initFlowbite();
-      console.log(res.data,'categoriesssss');  
     });
   }
 
   fetchAdvertisement(uid:string){
     this.userService.getAdvertisement(uid).subscribe((res)=>{
-      this.userService.advertisements.set(res.data)
       this.userService.adv.next(res.data)
-      console.log(res.data,'advvvv');  
     });
   }
  
@@ -72,7 +75,6 @@ export class UsersHomeComponent implements OnInit {
     this.userService.fetchProducts(uid).subscribe((res)=>{
       this.products = res.data
       this.filteredProduct = res.data
-      console.log(res.data);  
     });
   }
  

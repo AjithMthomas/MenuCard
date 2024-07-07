@@ -25,10 +25,10 @@
           <img src="/assets/images/slider5.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
       </div> -->
   </div>
-  @if(userService.advertisements().length > 0){
+  @if(this.adv.length > 0){
 
       <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-          @for(item of userService.advertisements(); track item ; let i = $index){
+          @for(item of this.adv; track item ; let i = $index){
 
               <button type="button" 
               [class]="i === 0 ? 'w-3 h-3 rounded-full bg-gray-500' : 'w-3 h-3 rounded-full bg-white'"
@@ -36,11 +36,6 @@
               [attr.aria-label]="'Slide ' + (i + 1)"
               [attr.data-carousel-slide-to]="i"></button>
           }
-        
-          <!-- <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-          <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
-          <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
-          <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button> -->
       </div>
   }
   <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>

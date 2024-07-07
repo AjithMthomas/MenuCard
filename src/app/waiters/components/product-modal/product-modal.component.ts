@@ -306,6 +306,16 @@ export class ProductModalComponent implements OnInit {
             console.log('Product updated successfully:', response);
             this.productForm.reset();
             this.close();
+            const dialogRef = this.dialog.open(AlertBoxComponent, {
+              width: '350px',
+              data: {
+                title: 'Success',
+                message: 'Product updated succesfully',
+                confirmText: 'Ok',
+                type:'success'
+        
+              }
+            });
           },
           (error) => {
             console.error('Error updating product:', error);
