@@ -1,19 +1,18 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute } from '@angular/router';
-import { ICategory, IProductFull, IupdatedmageData, Product } from '../../../waiters/repository/waiter-model';
+import { ICategory, IProductFull, Product } from '../../../waiters/repository/waiter-model';
 import { NgClass } from '@angular/common';
 import { ProductDetailedViewComponent } from '../product-detailed-view/product-detailed-view.component';
 import {
   MatBottomSheet,
-  MatBottomSheetConfig,
   MatBottomSheetModule,
-  MatBottomSheetRef,
 } from '@angular/material/bottom-sheet';
-import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { SearchPipe } from "../../../shared/pipes/search-pipe/search.pipe";
+import { initFlowbite } from 'flowbite';
+
 
 @Component({
     standalone: true,
@@ -41,6 +40,7 @@ export class UsersHomeComponent implements OnInit {
 
 
   ngOnInit() {
+    initFlowbite();
     this.route.paramMap.subscribe(params => {
       const restaurantId = params.get('restaurantId');
       if(restaurantId){
@@ -56,6 +56,7 @@ export class UsersHomeComponent implements OnInit {
   fetchCategories(uid:string){
     this.userService.fetchCategories(uid).subscribe((res)=>{
       this.categories = res.data
+      initFlowbite();
       console.log(res.data,'categoriesssss');  
     });
   }
@@ -63,6 +64,7 @@ export class UsersHomeComponent implements OnInit {
   fetchAdvertisement(uid:string){
     this.userService.getAdvertisement(uid).subscribe((res)=>{
       this.userService.advertisements.set(res.data)
+      this.userService.adv.next(res.data)
       console.log(res.data,'advvvv');  
     });
   }

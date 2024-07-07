@@ -1,6 +1,6 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { UserRepository } from '../repository/user-repository';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { IupdatedmageData } from '../../waiters/repository/waiter-model';
 
 @Injectable({
@@ -11,6 +11,7 @@ export class UserService {
   userRepository = inject(UserRepository);
 
   advertisements = signal<IupdatedmageData[]>([])
+  adv = new BehaviorSubject<IupdatedmageData[]>([]);
 
 
   fetchCategories(uid:string): Observable<any>{
