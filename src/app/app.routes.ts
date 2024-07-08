@@ -5,6 +5,7 @@ import { WaitersLayoutComponent } from './waiters/components/captain-layout/wait
 import { AdminLayoutComponent } from './admin/components/admin-layout/admin-layout.component';
 import { AdminHomeComponent } from './admin/components/admin-home/admin-home.component';
 import { ErrorPageComponent } from './shared/components/error-page/error-page.component';
+import { LeadsDataComponent } from './admin/components/leads-data/leads-data.component';
 
 
 export const routes: Routes = [
@@ -42,6 +43,10 @@ export const routes: Routes = [
             {
                 path:'index',
                 component:AdminHomeComponent
+            },
+            {
+                path:'leads',
+                component:LeadsDataComponent
             }
         ]
     },
